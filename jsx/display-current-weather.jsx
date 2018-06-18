@@ -1,5 +1,6 @@
 import React from 'react';
 import getTime from './getTime';
+import offsetTimezone from './offsetTimezone';
 
 const DisplayCurrentWeather = props => {
     const weather = props.weatherData;
@@ -13,8 +14,8 @@ const DisplayCurrentWeather = props => {
             <span>Wilgotność: {weather.main.humidity} %</span>
             <span>Prędkość wiatru: {weather.wind.speed} km/h</span>
             <span>Zachmurzenie: {weather.clouds.all} %</span>
-            <span>Wschód słońca: {props.sunrise}</span>
-            <span>Zachód słońca: {props.sunset}</span>
+            <span>Wschód słońca: {offsetTimezone(props.sunrise)}</span>
+            <span>Zachód słońca: {offsetTimezone(props.sunset)}</span>
         </div>
     )
 };

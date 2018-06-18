@@ -49,7 +49,6 @@ class App extends React.Component {
                     throw new Error('Failed to get sunrise/sunset data - check latitude and longitude.')
                 }
             }).then(data => {
-                console.log(data.results);
                 this.setState({
                     loading: false,
                     sunrise: data.results.sunrise, //TODO: Convert time from AM/PM to 24h format
