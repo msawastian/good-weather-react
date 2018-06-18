@@ -10,7 +10,9 @@ class App extends React.Component {
         this.state = {
             locationName: '',
             loading: true,
-            weatherData: {}
+            weatherData: {},
+            sunrise: '',
+            sunset: ''
         }
     }
 
@@ -21,28 +23,49 @@ class App extends React.Component {
     };
 
     getWeatherDataFromLocation = () => {
-        fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.state.locationName}&units=metric&appid=1564f8b4dd2a1779efdc16350e54fe25`)
+        fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.state.locationName}&units=metric&appid=${this.props.apiKey}`)
             .then( response => {
                 if (response.ok) {
                     return response.json()
                 } else {
-                    throw new Error('Server error - 1st stage')
+                    throw new Error('Failed to get weather data - check city name for errors.')
                 }
             }).then( data => {
-                console.log(data);
+                this.setState({
+                    weatherData: data
+                });
+            this.getSunriseSunset(this.state.weatherData.coord.lat, this.state.weatherData.coord.lon);
+        }).catch(error => {
+            console.log(error);
+        })
+    };
+
+    getSunriseSunset = (latitude, longitude) => {
+        fetch(`https://api.sunrise-sunset.org/json?lat=${latitude}&lng=${longitude}&date=today`)
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                } else {
+                    throw new Error('Failed to get sunrise/sunset data - check latitude and longitude.')
+                }
+            }).then(data => {
+                console.log(data.results);
                 this.setState({
                     loading: false,
-                    weatherData: data
+                    sunrise: data.results.sunrise, //TODO: Convert time from AM/PM to 24h format
+                    sunset: data.results.sunset
                 })
+        }).catch(error => {
+            console.log(error);
         })
     };
 
     render() {
         return (
             <div>
-            <h1>Hello World!</h1>
                 <LocationInput inputCallback={this.handleLocationInput} buttonCallback={this.getWeatherDataFromLocation}/>
-                {this.state.loading ? null : <DisplayCurrentWeather weatherData={this.state.weatherData}/>}
+                {this.state.loading ? null : <DisplayCurrentWeather
+                    weatherData={this.state.weatherData} sunset={this.state.sunset} sunrise={this.state.sunrise}/>}
             </div>
 
         )
@@ -51,7 +74,7 @@ class App extends React.Component {
 
 document.addEventListener('DOMContentLoaded', function() {
     ReactDOM.render(
-        <App/>,
+        <App apiKey={'1564f8b4dd2a1779efdc16350e54fe25'}/>,
         document.getElementById('app')
     )
 });

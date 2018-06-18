@@ -13,6 +13,8 @@ const DisplayCurrentWeather = props => {
             <span>Wilgotność: {weather.main.humidity} %</span>
             <span>Prędkość wiatru: {weather.wind.speed} km/h</span>
             <span>Zachmurzenie: {weather.clouds.all} %</span>
+            <span>Wschód słońca: {props.sunrise}</span>
+            <span>Zachód słońca: {props.sunset}</span>
         </div>
     )
 };
