@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import '../scss/main.scss';
 import LocationInput from './location-input.jsx';
-import WeatherDisplay from "./weather-display.jsx";
-
+import DisplayCurrentWeather from "./display-current-weather.jsx";
 
 class App extends React.Component {
     constructor(props){
@@ -43,7 +42,7 @@ class App extends React.Component {
             <div>
             <h1>Hello World!</h1>
                 <LocationInput inputCallback={this.handleLocationInput} buttonCallback={this.getWeatherDataFromLocation}/>
-                {this.state.loading ? null : <WeatherDisplay weatherData={this.state.weatherData}/>}
+                {this.state.loading ? null : <DisplayCurrentWeather weatherData={this.state.weatherData}/>}
             </div>
 
         )
