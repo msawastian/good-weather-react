@@ -22,7 +22,7 @@ class App extends React.Component {
         })
     };
 
-    getWeatherDataFromLocation = () => {
+    getCurrentWeatherDataFromLocation = () => {
         fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.state.locationName}&units=metric&appid=${this.props.apiKey}`)
             .then( response => {
                 if (response.ok) {
@@ -51,7 +51,7 @@ class App extends React.Component {
             }).then(data => {
                 this.setState({
                     loading: false,
-                    sunrise: data.results.sunrise, //TODO: Convert time from AM/PM to 24h format
+                    sunrise: data.results.sunrise,
                     sunset: data.results.sunset
                 })
         }).catch(error => {
@@ -62,7 +62,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <LocationInput inputCallback={this.handleLocationInput} buttonCallback={this.getWeatherDataFromLocation}/>
+                <LocationInput inputCallback={this.handleLocationInput} buttonCallback={this.getCurrentWeatherDataFromLocation}/>
                 {this.state.loading ? null : <DisplayCurrentWeather
                     weatherData={this.state.weatherData} sunset={this.state.sunset} sunrise={this.state.sunrise}/>}
             </div>
