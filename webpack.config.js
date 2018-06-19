@@ -1,7 +1,7 @@
 var path = require("path");
 
 module.exports = {
-    entry: "./jsx/app.jsx",
+    entry: "./jsx/app.js",
     output: {
         filename: "./bundle.js",
         path: path.resolve(__dirname, "js")
@@ -12,7 +12,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.jsx$/,
+                test: /\.js$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 options: {

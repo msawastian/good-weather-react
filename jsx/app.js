@@ -1,8 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../scss/main.scss';
-import LocationInput from './location-input.jsx';
-import DisplayCurrentWeather from "./display-current-weather.jsx";
+import 'main.css';
+import LocationInput from './location-input';
+import DisplayCurrentWeather from "./display-current-weather";
+import DisplayLongTermWeather from './display-long-term-weather';
+import NavigationBar from './navbar';
+import {
+    HashRouter,
+    Route,
+    Switch,
+    NavLink,
+} from 'react-router-dom';
 
 class App extends React.Component {
     constructor(props){
@@ -61,11 +69,16 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
-                <LocationInput inputCallback={this.handleLocationInput} buttonCallback={this.getCurrentWeatherDataFromLocation}/>
-                {this.state.loading ? null : <DisplayCurrentWeather weatherData={this.state.weatherData} sunset={this.state.sunset} sunrise={this.state.sunrise}/>}
-            </div>
-
+            <HashRouter>
+                <main>
+                    <NavigationBar/>
+                    <LocationInput inputCallback={this.handleLocationInput} buttonCallback={this.getCurrentWeatherDataFromLocation}/>
+                    <Switch>
+                        <Route exact path={'/'} render={(props) => this.state.loading ? null : <DisplayCurrentWeather {...props} weatherData={this.state.weatherData} sunset={this.state.sunset} sunrise={this.state.sunrise}/>}/>
+                        <Route path={'/longterm'} render={(props) => <DisplayLongTermWeather {...props}/>}/>
+                    </Switch>
+                </main>
+            </HashRouter>
         )
     }
 }
