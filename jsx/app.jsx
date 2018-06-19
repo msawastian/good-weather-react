@@ -63,8 +63,7 @@ class App extends React.Component {
         return (
             <div>
                 <LocationInput inputCallback={this.handleLocationInput} buttonCallback={this.getCurrentWeatherDataFromLocation}/>
-                {this.state.loading ? null : <DisplayCurrentWeather
-                    weatherData={this.state.weatherData} sunset={this.state.sunset} sunrise={this.state.sunrise}/>}
+                {this.state.loading ? null : <DisplayCurrentWeather weatherData={this.state.weatherData} sunset={this.state.sunset} sunrise={this.state.sunrise}/>}
             </div>
 
         )
