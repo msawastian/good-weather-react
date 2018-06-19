@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'main.css';
+import '../scss/main.scss';
 import LocationInput from './location-input';
 import DisplayCurrentWeather from "./display-current-weather";
-import DisplayLongTermWeather from './display-long-term-weather';
+import DisplayForecast from './display-forecast';
 import NavigationBar from './navbar';
 import {
     HashRouter,
@@ -20,7 +20,8 @@ class App extends React.Component {
             loading: true,
             weatherData: {},
             sunrise: '',
-            sunset: ''
+            sunset: '',
+            forecastData: []
         }
     }
 
@@ -43,6 +44,7 @@ class App extends React.Component {
                     weatherData: data
                 });
             this.getSunriseSunset(this.state.weatherData.coord.lat, this.state.weatherData.coord.lon);
+            this.getForecastData()
         }).catch(error => {
             console.log(error);
         })
@@ -67,6 +69,24 @@ class App extends React.Component {
         })
     };
 
+    getForecastData = () => {
+        fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${this.state.locationName}&units=metric&appid=${this.props.apiKey}`)
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                } else {
+                    throw new Error('Failed to get forecast data')
+                }
+            }).then(data => {
+                console.log(data.list)
+                this.setState({
+                    forecastData: data.list
+                })
+        }).catch(error => {
+            console.log(error);
+        })
+    };
+
     render() {
         return (
             <HashRouter>
@@ -74,8 +94,8 @@ class App extends React.Component {
                     <NavigationBar/>
                     <LocationInput inputCallback={this.handleLocationInput} buttonCallback={this.getCurrentWeatherDataFromLocation}/>
                     <Switch>
-                        <Route exact path={'/'} render={(props) => this.state.loading ? null : <DisplayCurrentWeather {...props} weatherData={this.state.weatherData} sunset={this.state.sunset} sunrise={this.state.sunrise}/>}/>
-                        <Route path={'/longterm'} render={(props) => <DisplayLongTermWeather {...props}/>}/>
+                        <Route exact path={'/'} render={(props) => this.state.loading ? <h1>Enter city name</h1> : <DisplayCurrentWeather {...props} weatherData={this.state.weatherData} sunset={this.state.sunset} sunrise={this.state.sunrise}/>}/>
+                        <Route path={'/longterm'} render={(props) => <DisplayForecast {...props}/>}/>
                     </Switch>
                 </main>
             </HashRouter>
