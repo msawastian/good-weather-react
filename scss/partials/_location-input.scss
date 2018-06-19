@@ -1,0 +1,19 @@
+.location-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.location-input-label {
+  display: flex;
+  flex-direction: column;
+}
+
+.location-input-input {
+  width: 500px;
+}
+
+.location-input-button {
+  height: 25px;
+  width: 75px;
+  border-radius: 10%;
+}

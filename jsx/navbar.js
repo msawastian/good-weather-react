@@ -8,10 +8,9 @@ import {
 
 const NavigationBar = () => {
     return (
-        <ul>
-            <li><NavLink to={'/'}>Current Weather</NavLink></li>
-            <li><NavLink to={'/longterm'}>Longterm Weather</NavLink></li>
-            <li><NavLink to={'/pollution'}>Air pollution</NavLink></li>
+        <ul className={'navigation-bar'}>
+            <li className={'navigation-bar-element'}><NavLink className={'navigation-bar-navlink'} to={'/'}>Current Weather</NavLink></li>
+            <li className={'navigation-bar-element'}><NavLink className={'navigation-bar-navlink'} to={'/longterm'}>Longterm Weather</NavLink></li>
         </ul>
     )
 };

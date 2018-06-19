@@ -1,12 +1,20 @@
 import React from 'react';
-import DisplayForecastDay from "./display-forecast-day";
+import DisplayForecastHour from './display-forecast-hour';
+import { v4 as uuid} from 'uuid';
+
+
 
 const DisplayForecast = props => {
     return (
         <div>
-            <DisplayForecastDay/>
-            <DisplayForecastDay/>
-            <DisplayForecastDay/>
+            <div>{props.location}</div>
+            <ul>
+                {props.forecast.map(weather => {
+                    return (
+                        <li key={uuid()}><DisplayForecastHour {...weather}/></li>
+                    )
+                })}
+            </ul>
         </div>
     )
 };

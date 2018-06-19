@@ -78,7 +78,6 @@ class App extends React.Component {
                     throw new Error('Failed to get forecast data')
                 }
             }).then(data => {
-                console.log(data.list)
                 this.setState({
                     forecastData: data.list
                 })
@@ -95,7 +94,7 @@ class App extends React.Component {
                     <LocationInput inputCallback={this.handleLocationInput} buttonCallback={this.getCurrentWeatherDataFromLocation}/>
                     <Switch>
                         <Route exact path={'/'} render={(props) => this.state.loading ? <h1>Enter city name</h1> : <DisplayCurrentWeather {...props} weatherData={this.state.weatherData} sunset={this.state.sunset} sunrise={this.state.sunrise}/>}/>
-                        <Route path={'/longterm'} render={(props) => <DisplayForecast {...props}/>}/>
+                        <Route path={'/longterm'} render={(props) => this.state.loading ? <h1>Enter city name</h1> : <DisplayForecast {...props} forecast={this.state.forecastData} location={this.state.locationName}/>}/>
                     </Switch>
                 </main>
             </HashRouter>
