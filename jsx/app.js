@@ -1,8 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '../scss/main.scss';
-import LocationInput from './location-input.jsx';
-import DisplayCurrentWeather from "./display-current-weather.jsx";
+import LocationInput from './location-input';
+import DisplayCurrentWeather from "./display-current-weather";
+import DisplayForecast from './display-forecast';
+import NavigationBar from './navbar';
+import {
+    HashRouter,
+    Route,
+    Switch,
+    NavLink,
+} from 'react-router-dom';
 
 class App extends React.Component {
     constructor(props){
@@ -12,7 +20,8 @@ class App extends React.Component {
             loading: true,
             weatherData: {},
             sunrise: '',
-            sunset: ''
+            sunset: '',
+            forecastData: []
         }
     }
 
@@ -22,7 +31,7 @@ class App extends React.Component {
         })
     };
 
-    getWeatherDataFromLocation = () => {
+    getCurrentWeatherDataFromLocation = () => {
         fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.state.locationName}&units=metric&appid=${this.props.apiKey}`)
             .then( response => {
                 if (response.ok) {
@@ -35,6 +44,7 @@ class App extends React.Component {
                     weatherData: data
                 });
             this.getSunriseSunset(this.state.weatherData.coord.lat, this.state.weatherData.coord.lon);
+            this.getForecastData()
         }).catch(error => {
             console.log(error);
         })
@@ -51,8 +61,25 @@ class App extends React.Component {
             }).then(data => {
                 this.setState({
                     loading: false,
-                    sunrise: data.results.sunrise, //TODO: Convert time from AM/PM to 24h format
+                    sunrise: data.results.sunrise,
                     sunset: data.results.sunset
+                })
+        }).catch(error => {
+            console.log(error);
+        })
+    };
+
+    getForecastData = () => {
+        fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${this.state.locationName}&units=metric&appid=${this.props.apiKey}`)
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                } else {
+                    throw new Error('Failed to get forecast data')
+                }
+            }).then(data => {
+                this.setState({
+                    forecastData: data.list
                 })
         }).catch(error => {
             console.log(error);
@@ -61,12 +88,16 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
-                <LocationInput inputCallback={this.handleLocationInput} buttonCallback={this.getWeatherDataFromLocation}/>
-                {this.state.loading ? null : <DisplayCurrentWeather
-                    weatherData={this.state.weatherData} sunset={this.state.sunset} sunrise={this.state.sunrise}/>}
-            </div>
-
+            <HashRouter>
+                <main>
+                    <NavigationBar/>
+                    <LocationInput inputCallback={this.handleLocationInput} buttonCallback={this.getCurrentWeatherDataFromLocation}/>
+                    <Switch>
+                        <Route exact path={'/'} render={(props) => this.state.loading ? <h1>Enter city name</h1> : <DisplayCurrentWeather {...props} weatherData={this.state.weatherData} sunset={this.state.sunset} sunrise={this.state.sunrise}/>}/>
+                        <Route path={'/longterm'} render={(props) => this.state.loading ? <h1>Enter city name</h1> : <DisplayForecast {...props} forecast={this.state.forecastData} location={this.state.locationName}/>}/>
+                    </Switch>
+                </main>
+            </HashRouter>
         )
     }
 }
