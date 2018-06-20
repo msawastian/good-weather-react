@@ -2,8 +2,8 @@ import React from 'react';
 
 const Header = () => {
     return (
-        <header>
-            good weather
+        <header className={'header-logo'}>
+            GOOD Weather
         </header>
     )
 };

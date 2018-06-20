@@ -1,16 +1,15 @@
 .weather {
-  border-left: 4px solid purple;
-  border-right: 4px solid purple;
+  border-top: 2px solid purple;
+  border-bottom: 2px solid purple;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 90vw;
+  width: 95vw;
   height: 50vh;
   background-color: white;
-  border-radius: 5%;
-  -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.6);
-  -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.6);
-  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.6);
+  //-webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.6);
+  //-moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.6);
+  //box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.6);
 }
 
 .weather-row-left, .weather-row-right {
@@ -28,7 +27,7 @@
 .weather-row-right {
   width: 60%;
   height: 100%;
-  border-left: 1px dotted purple;
+  border-left: 2px solid $maincolor;
 }
 
 .weather-row-left-list, .weather-row-right-list {

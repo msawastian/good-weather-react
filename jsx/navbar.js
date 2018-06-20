@@ -8,11 +8,13 @@ import {
 
 const NavigationBar = () => {
     return (
-        <ul className={'navigation-bar'}>
-            <li className={'navigation-bar-element'}><NavLink className={'navigation-bar-navlink'} to={'/'}>Current Weather</NavLink></li>
-            <li className={'navigation-bar-element'}><NavLink className={'navigation-bar-navlink'} to={'/longterm'}>Forecast</NavLink></li>
-            <li className={'navigation-bar-element'}><NavLink className={'navigation-bar-navlink'} to={'/pollution'}>Air Pollution</NavLink></li>
-        </ul>
+        <div className={'navigation-container'}>
+            <ul className={'navigation-bar'}>
+                <li className={'navigation-bar-element'}><NavLink className={'navigation-bar-navlink'} exact to={'/'} activeStyle={{borderBottom: '3px solid purple'}}>Weather</NavLink></li>
+                <li className={'navigation-bar-element'}><NavLink className={'navigation-bar-navlink'} to={'/longterm'} activeStyle={{borderBottom: '3px solid purple'}}>Forecast</NavLink></li>
+                <li className={'navigation-bar-element'}><NavLink className={'navigation-bar-navlink'} to={'/pollution'} activeStyle={{borderBottom: '3px solid purple'}}>Air Pollution</NavLink></li>
+            </ul>
+        </div>
     )
 };
 

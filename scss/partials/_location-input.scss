@@ -1,0 +1,74 @@
+.location-container {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.location-input {
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.location-input-input {
+  height: 50px;
+  width: 70%;
+  font-size: 20px;
+
+  margin: 0 5px;
+  text-indent: 10px;
+  border: none;
+  border-left: 2px solid $maincolor;
+  &::placeholder {
+    color: grey;
+  }
+  &:active, &:focus {
+    outline: none;
+  }
+}
+
+%location-input-button {
+  width: 40px;
+  height: 40px;
+  background-color: purple;
+  border: none;
+  border-radius: 50%;
+  opacity: 0.9;
+  box-shadow: 0 2px 0 0 black;
+  position: relative;
+  top: 0;
+  margin-bottom: 2px;
+  margin-right: 5px;
+  &:hover {
+    opacity: 1;
+  }
+  &:active {
+    box-shadow: none;
+    top: 2px;
+    margin-bottom: 0;
+  }
+  &:active, &:focus {
+    outline: none;
+  }
+}
+
+.location-input-button-search {
+  @extend %location-input-button;
+  background-color: purple;
+  background-image: url("./../images/search.svg");
+  background-size: cover;
+}
+
+.location-input-button-geolocation {
+  @extend %location-input-button;
+  background-color: purple;
+  background-image: url("./../images/geo.svg");
+  background-size: 70%;
+  background-position: center;
+  background-repeat: no-repeat;
+}

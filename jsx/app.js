@@ -7,6 +7,7 @@ import DisplayCurrentWeather from "./display-current-weather";
 import DisplayForecast from './display-forecast';
 import NavigationBar from './navbar';
 import Header from './header';
+import search from '../images/search.svg';
 import {
     HashRouter,
     Route,
