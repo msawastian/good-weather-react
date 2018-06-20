@@ -37,8 +37,7 @@ class App extends React.Component {
     getGeoLocation = () => {
         navigator.geolocation.getCurrentPosition(
             (position) => {
-              console.log(position);
-              this.getCurrentWeatherDataFromCoordinates(position.coords.latitude.toFixed(2), position.coords.longitude.toFixed(2));
+              this.getCurrentWeatherDataFromCoordinates(Number(position.coords.latitude), Number(position.coords.longitude));
             }, (error) => {console.log(error)}
         )
     };
