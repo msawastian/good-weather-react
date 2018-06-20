@@ -1,0 +1,40 @@
+.weather {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90vw;
+  height: 50vh;
+}
+
+.weather-row-left {
+  width: 40%;
+}
+
+.weather-row-right {
+  width: 60%;
+}
+
+.weather-row-left-list, .weather-row-right-list {
+  list-style: none;
+  width: 100%;
+}
+
+.weather-row-left-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.weather-row-left-list-element {
+  padding: 5px 0;
+}
+
+.weather-row-right-list-element {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+

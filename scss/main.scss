@@ -1,8 +1,17 @@
 @import 'partials/_navigation-bar.scss';
-@import 'partials/location-input';
+@import 'partials/_location-input';
+@import 'partials/_display-current-weather.scss';
 
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 

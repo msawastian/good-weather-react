@@ -7,8 +7,9 @@ const DisplayForecastHour = ({clouds, main, weather, wind}) => {
             <span>{main.pressure} hPa</span>
             <span>{main.humidity} %</span>
             <span>{clouds.all} %</span>
-            <span>{weather.main}</span>
-            <span>{weather.description}</span>
+            <span>{weather[0].main}</span>
+            <span>{weather[0].description}</span>
+            <span>{wind.speed}</span>
         </div>
 
     )

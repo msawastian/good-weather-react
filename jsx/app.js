@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'normalize.css';
 import '../scss/main.scss';
 import LocationInput from './location-input';
 import DisplayCurrentWeather from "./display-current-weather";
 import DisplayForecast from './display-forecast';
 import NavigationBar from './navbar';
+import Header from './header';
 import {
     HashRouter,
     Route,
@@ -40,6 +42,7 @@ class App extends React.Component {
                     throw new Error('Failed to get weather data - check city name for errors.')
                 }
             }).then( data => {
+                console.log(data);
                 this.setState({
                     weatherData: data
                 });
@@ -78,6 +81,7 @@ class App extends React.Component {
                     throw new Error('Failed to get forecast data')
                 }
             }).then(data => {
+                console.log(data);
                 this.setState({
                     forecastData: data.list
                 })
@@ -90,6 +94,7 @@ class App extends React.Component {
         return (
             <HashRouter>
                 <main>
+                    <Header/>
                     <NavigationBar/>
                     <LocationInput inputCallback={this.handleLocationInput} buttonCallback={this.getCurrentWeatherDataFromLocation}/>
                     <Switch>
