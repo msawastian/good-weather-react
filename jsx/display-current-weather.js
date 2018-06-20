@@ -1,10 +1,10 @@
 import React from 'react';
 import getTime from './getTime';
 import offsetTimezone from './offsetTimezone';
+import calculateWindDirection from './calculateWindDirection';
 
 const DisplayCurrentWeather = props => {
     const weather = props.weatherData,
-        weatherIcon = '!',
         dateOptions = {
         day: 'numeric',
         month: 'long',
@@ -17,11 +17,12 @@ const DisplayCurrentWeather = props => {
         <div className={'weather'}>
             <div className={'weather-row-left'}>
                 <ul className={'weather-row-left-list'}>
-                    <li className={'weather-row-left-list-element weather-icon'}>{weatherIcon}</li>
+                    <li className={'weather-row-left-list-element weather-icon'} style={{backgroundImage: `url(http://openweathermap.org/img/w/${weather.weather[0].icon}.png)`}}></li>
+                    <li className={'weather-row-left-list-element weather-temp'}>{weather.main.temp.toFixed(0)} &#8451;</li>
+                    <li className={'weather-row-left-list-element weather-location'}>{weather.name}</li>
                     <li className={'weather-row-left-list-element weather-date'}>{date}</li>
                     <li className={'weather-row-left-list-element weather-time'}>{getTime()}</li>
                     <li className={'weather-row-left-list-element weather-description'}>{weather.weather[0].description}</li>
-                    <li className={'weather-row-left-list-element weather-temp'}>{weather.main.temp.toFixed(0)}</li>
                 </ul>
             </div>
             <div className={'weather-row-right'}>
@@ -36,11 +37,11 @@ const DisplayCurrentWeather = props => {
                     </li>
                     <li className={'weather-row-right-list-element'}>
                         <span>Humidity</span>
-                        <span>{weather.main.humidity} %</span>
+                        <span>{weather.main.humidity}%</span>
                     </li>
                     <li className={'weather-row-right-list-element'}>
                         <span>Clouds</span>
-                        <span>{weather.clouds.all} %</span>
+                        <span>{weather.clouds.all}%</span>
                     </li>
                     <li className={'weather-row-right-list-element'}>
                         <span>Wind</span>
@@ -48,7 +49,7 @@ const DisplayCurrentWeather = props => {
                     </li>
                     <li className={'weather-row-right-list-element'}>
                         <span>Wind direction</span>
-                        <span>{weather.wind.deg}</span>
+                        <span>{calculateWindDirection(weather.wind.deg)}</span>
                     </li>
                     <li className={'weather-row-right-list-element'}>
                         <span>Visibility</span>
