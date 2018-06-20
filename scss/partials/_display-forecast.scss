@@ -25,10 +25,22 @@
   align-items: center;
 }
 
-.forecast-list-element-hour {
+.forecast-list-element-time {
   width: 13vw;
-  height: 1rem;
+  height: 2.2rem;
   margin-left: 5px;
+  text-align: center;
+}
+
+.forecast-element-time-hour {
+  display: block;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.forecast-element-time-date {
+  display: block;
+  font-size: 0.8rem;
 }
 
 .forecast-list-icon {

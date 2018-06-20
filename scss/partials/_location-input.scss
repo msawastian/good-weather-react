@@ -15,11 +15,18 @@
   margin: 20px 0;
 }
 
+.location-input-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .location-input-input {
   height: 50px;
-  width: 70%;
+  width: 80%;
   font-size: 20px;
-  margin: 0 5px;
+  margin: 0 5px 0 0;
   text-indent: 10px;
   letter-spacing: 1px;
   border: none;

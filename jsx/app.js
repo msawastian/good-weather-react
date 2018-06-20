@@ -34,6 +34,36 @@ class App extends React.Component {
         })
     };
 
+    getGeoLocation = () => {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+              console.log(position);
+              this.getCurrentWeatherDataFromCoordinates(position.coords.latitude.toFixed(2), position.coords.longitude.toFixed(2));
+            }, (error) => {console.log(error)}
+        )
+    };
+
+    getCurrentWeatherDataFromCoordinates = (latitude, longitude) => {
+        fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${this.props.apiKey}`)
+            .then( response => {
+                if (response.ok) {
+                    return response.json()
+                } else {
+                    throw new Error('Failed to get weather data - check city name for errors.')
+                }
+            }).then( data => {
+            this.setState({
+                weatherData: data,
+                locationName: data.name
+            });
+            this.getSunriseSunset(latitude, longitude);
+            this.getForecastDataFromCoordinates(latitude, longitude);
+        }).catch(error => {
+            console.log(error);
+        })
+    };
+
+
     getCurrentWeatherDataFromLocation = (event) => {
         event.preventDefault();
         fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.state.locationName}&units=metric&appid=${this.props.apiKey}`)
@@ -49,7 +79,7 @@ class App extends React.Component {
                     weatherData: data
                 });
             this.getSunriseSunset(this.state.weatherData.coord.lat, this.state.weatherData.coord.lon);
-            this.getForecastData()
+            this.getForecastData();
         }).catch(error => {
             console.log(error);
         })
@@ -92,16 +122,38 @@ class App extends React.Component {
         })
     };
 
+    getForecastDataFromCoordinates = (latitude, longitude) => {
+
+        fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${this.props.apiKey}`)
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                } else {
+                    throw new Error('Failed to get forecast data')
+                }
+            }).then(data => {
+                this.setState({
+                    forecastData: data.list
+                })
+        }).catch(error => {
+            console.log(error);
+        })
+    };
+
     render() {
         return (
             <HashRouter>
                 <main>
                     <Header/>
                     <NavigationBar/>
-                    <LocationInput inputCallback={this.handleLocationInput} buttonCallback={this.getCurrentWeatherDataFromLocation}/>
+                    <LocationInput inputCallback={this.handleLocationInput}
+                                   buttonCallback={this.getCurrentWeatherDataFromLocation}
+                                   geoCallback={this.getGeoLocation}
+                                   locationName={this.state.locationName}
+                    />
                     <Switch>
-                        <Route exact path={'/'} render={(props) => this.state.loading ? <h1>Awaiting input...</h1> : <DisplayCurrentWeather {...props} weatherData={this.state.weatherData} sunset={this.state.sunset} sunrise={this.state.sunrise}/>}/>
-                        <Route path={'/longterm'} render={(props) => this.state.loading ? <h1>Awaiting input...</h1> : <DisplayForecast {...props} forecast={this.state.forecastData} location={this.state.locationName}/>}/>
+                        <Route exact path={'/'} render={(props) => this.state.loading ? <p className={'no-data'}>Awaiting input...</p> : <DisplayCurrentWeather {...props} weatherData={this.state.weatherData} sunset={this.state.sunset} sunrise={this.state.sunrise}/>}/>
+                        <Route path={'/longterm'} render={(props) => this.state.loading ? <p className={'no-data'}>Awaiting input...</p> : <DisplayForecast {...props} forecast={this.state.forecastData} location={this.state.locationName}/>}/>
                     </Switch>
                 </main>
             </HashRouter>
