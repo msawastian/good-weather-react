@@ -1,0 +1,57 @@
+.forecast-container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.forecast-list {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0 5px;
+}
+
+.forecast-list-element {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+}
+
+.forecast-list-element-hour {
+  border-left: 2px solid $maincolor;
+  height: 100%;
+  width: 13vw;
+}
+
+.forecast-list-icon {
+  height: 100%;
+  width: 15vw;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.forecast-main {
+  height: 100%;
+  width: 27vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.forecast-list-secondary {
+  list-style: none;
+  height: 100%;
+  width: 45vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.forecast-list-secondary-element {
+  width: 100%;
+  height: 33.333%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

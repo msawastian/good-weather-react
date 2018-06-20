@@ -19,7 +19,6 @@ const DisplayCurrentWeather = props => {
                 <ul className={'weather-row-left-list'}>
                     <li className={'weather-row-left-list-element weather-icon'} style={{backgroundImage: `url(http://openweathermap.org/img/w/${weather.weather[0].icon}.png)`}}></li>
                     <li className={'weather-row-left-list-element weather-temp'}>{weather.main.temp.toFixed(0)} &#8451;</li>
-                    <li className={'weather-row-left-list-element weather-location'}>{weather.name}</li>
                     <li className={'weather-row-left-list-element weather-date'}>{date}</li>
                     <li className={'weather-row-left-list-element weather-time'}>{getTime()}</li>
                     <li className={'weather-row-left-list-element weather-description'}>{weather.weather[0].description}</li>

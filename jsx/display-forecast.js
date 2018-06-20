@@ -6,12 +6,11 @@ import { v4 as uuid} from 'uuid';
 
 const DisplayForecast = props => {
     return (
-        <div>
-            <div>{props.location}</div>
-            <ul>
+        <div className={'forecast-container'}>
+            <ul className={'forecast-list'}>
                 {props.forecast.map(weather => {
                     return (
-                        <li key={uuid()}><DisplayForecastHour {...weather}/></li>
+                        <DisplayForecastHour key={uuid()} {...weather} />
                     )
                 })}
             </ul>

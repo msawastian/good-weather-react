@@ -34,7 +34,8 @@ class App extends React.Component {
         })
     };
 
-    getCurrentWeatherDataFromLocation = () => {
+    getCurrentWeatherDataFromLocation = (event) => {
+        event.preventDefault();
         fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.state.locationName}&units=metric&appid=${this.props.apiKey}`)
             .then( response => {
                 if (response.ok) {
@@ -99,8 +100,8 @@ class App extends React.Component {
                     <NavigationBar/>
                     <LocationInput inputCallback={this.handleLocationInput} buttonCallback={this.getCurrentWeatherDataFromLocation}/>
                     <Switch>
-                        <Route exact path={'/'} render={(props) => this.state.loading ? <h1>Enter city name</h1> : <DisplayCurrentWeather {...props} weatherData={this.state.weatherData} sunset={this.state.sunset} sunrise={this.state.sunrise}/>}/>
-                        <Route path={'/longterm'} render={(props) => this.state.loading ? <h1>Enter city name</h1> : <DisplayForecast {...props} forecast={this.state.forecastData} location={this.state.locationName}/>}/>
+                        <Route exact path={'/'} render={(props) => this.state.loading ? <h1>Awaiting input...</h1> : <DisplayCurrentWeather {...props} weatherData={this.state.weatherData} sunset={this.state.sunset} sunrise={this.state.sunrise}/>}/>
+                        <Route path={'/longterm'} render={(props) => this.state.loading ? <h1>Awaiting input...</h1> : <DisplayForecast {...props} forecast={this.state.forecastData} location={this.state.locationName}/>}/>
                     </Switch>
                 </main>
             </HashRouter>
