@@ -3,28 +3,34 @@ import React from 'react';
 const DisplayPollution = props => {
     return (
             <section className={'pollution-container'}>
-                <div className={'pollution-top-row'}>
-                    <div className={'pollution-logo'}></div>
-                    <div className={'pollution-index-overall'}>
-                        <div className={'pollution-index-overall-value'}>{Math.round(props.airlyData.airQualityIndex)}</div>
-                        <div className={'pollution-index-pm-value-unit'}>INDEX</div>
+                <div className={'pollution-row'}>
+                    <div className={'pollution-description'}>
+                        <p className={'pollution-description-text'}></p>
+                    </div>
+                    <div className={'pollution-index'}>
+                        <div className={'pollution-index-value'}></div>
                     </div>
                 </div>
-                <div className={'pollution-bottom-row'}>
-                    <div className={'pollution-index-pm'}>
-                        <div className={'pollution-index-pm-value'}>{Math.round(props.airlyData.pm10)}
-                            <div className={'pollution-index-pm-value-unit'}>&#181;m/m3 PM10</div>
-                        </div>
-                    </div>
-                    <div className={'pollution-index-pm'}>
-                        <div className={'pollution-index-pm-value'}>{Math.round(props.airlyData.pm25)}
-                            <div className={'pollution-index-pm-value-unit'}>&#181;m/m3 PM2.5</div>
-                        </div>
-                    </div>
-                </div>
+                <ul className={'pollution-list'}>
+                    <li className={'pollution-list-element'}>
+                        <span className={'pollution-item'}></span>
+                        <span className={'pollution-item-value'}></span>
+                    </li>
+                    <li>
+                        <span className={'pollution-item'}></span>
+                        <span className={'pollution-item-value'}></span>
+                    </li>
+                </ul>
             </section>
     )
 };
 
 
 export default DisplayPollution;
+
+/*
+{Math.round(props.airlyData.airQualityIndex)}
+{Math.round(props.airlyData.pm10)
+{Math.round(props.airlyData.pm25)
+&#181;m/m3
+ */
