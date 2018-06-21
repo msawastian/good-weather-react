@@ -1,0 +1,33 @@
+.pollution-container {
+  height: 70vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid red;
+}
+
+.pollution-top-row, .pollution-bottom-row {
+  display: flex;
+  width: 100%;
+  height: 50%;
+  border: 1px solid green;
+}
+
+.pollution-logo {
+  width: 50%;
+  height: 100%;
+  background-image: url("https://airly.eu/wp-content/themes/draftweb/images/presskit/big/logo1.jpg");
+  background-size: cover;
+}
+
+.pollution-index-overall {
+
+}
+
+.pollution-index-10 {
+
+}
+
+.pollution-index-25 {
+
+}
