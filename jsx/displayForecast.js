@@ -1,6 +1,6 @@
 import React from 'react';
-import DisplayForecastHour from './displayForecastHour';
 import { v4 as uuid} from 'uuid';
+import DisplayForecastHour from './displayForecastHour';
 
 const DisplayForecast = props => {
     return (

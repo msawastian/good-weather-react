@@ -4,7 +4,7 @@ const DisplayForecastHour = ({clouds, dt, dt_txt, main, rain, weather, wind}) =>
         const date = new Date(dt * 1000).toLocaleDateString().slice(0,5);
 
         return (
-        <li className={'forecast-list-element'}>
+        <li className={'forecast-list-element animated fadeInUp'}>
             <div className={'forecast-list-element-time'}>
                 <span className={'forecast-element-time-hour'}>{dt_txt.slice(11, 16)}</span>
                 <span className={'forecast-element-time-date'}>{date}</span>

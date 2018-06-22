@@ -14,7 +14,7 @@ const DisplayCurrentWeather = props => {
         sunset = new Date(weather.sys.sunset * 1000).toLocaleTimeString();
 
     return (
-        <div className={'weather'}>
+        <div className={'weather animated fadeInUp'}>
             <div className={'weather-row-left'}>
                 <ul className={'weather-row-left-list'}>
                     <li className={'weather-row-left-list-element weather-icon'} style={{backgroundImage: `url(http://openweathermap.org/img/w/${weather.weather[0].icon}.png)`}}></li>

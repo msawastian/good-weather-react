@@ -60,7 +60,7 @@ const DisplayPollution = props => {
 
     if (props.airlyData.pollutionLevel) {
         return (
-            <section className={'pollution-container'}>
+            <section className={'pollution-container animated fadeInUp'}>
                 <div className={'airly-logo'}></div>
                 <ul className={'pollution-list'}>
                     <li className={'pollution-list-element'}>
@@ -87,7 +87,7 @@ const DisplayPollution = props => {
         )
     } else {
         return (
-            <section className={'pollution-container'}>
+            <section className={'pollution-container animated fadeInUp'}>
                 <div className={'airly-logo'}></div>
                 <ul className={'pollution-list'}>
                     <li className={'pollution-list-element'} style={{backgroundColor: '#6c9ae2'}}>

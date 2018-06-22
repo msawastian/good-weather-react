@@ -44,7 +44,6 @@ module.exports = {
         ],
     },
     devServer: {
-        inline: true,
         contentBase:"./",
         port: 3001
     }
