@@ -1,6 +1,5 @@
 import React from 'react';
 import getTime from './getTime';
-import offsetTimezone from './offsetTimezone';
 import calculateWindDirection from './calculateWindDirection';
 
 const DisplayCurrentWeather = props => {
@@ -10,9 +9,10 @@ const DisplayCurrentWeather = props => {
         month: 'long',
         year: 'numeric'
     },
-        date = new Date().toLocaleDateString('en-GB', dateOptions);
+        date = new Date().toLocaleDateString('en-GB', dateOptions),
+        sunrise = new Date(weather.sys.sunrise * 1000).toLocaleTimeString(),
+        sunset = new Date(weather.sys.sunset * 1000).toLocaleTimeString();
 
-    console.log();
     return (
         <div className={'weather'}>
             <div className={'weather-row-left'}>
@@ -28,11 +28,11 @@ const DisplayCurrentWeather = props => {
                 <ul className={'weather-row-right-list'}>
                     <li className={'weather-row-right-list-element'}>
                         <span>Sunrise</span>
-                        <span>{offsetTimezone(props.sunrise)}</span>
+                        <span>{sunrise}</span>
                     </li>
                     <li className={'weather-row-right-list-element'}>
                         <span>Sunset</span>
-                        <span>{offsetTimezone(props.sunset)}</span>
+                        <span>{sunset}</span>
                     </li>
                     <li className={'weather-row-right-list-element'}>
                         <span>Humidity</span>

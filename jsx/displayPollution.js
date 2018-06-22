@@ -114,10 +114,3 @@ const DisplayPollution = props => {
 
 
 export default DisplayPollution;
-
-/*
-{Math.round(props.airlyData.airQualityIndex)}
-{Math.round(props.airlyData.pm10)
-{Math.round(props.airlyData.pm25)
-&#181;m/m3
- */

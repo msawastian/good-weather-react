@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'normalize.css';
 import '../scss/main.scss';
-import LocationInput from './location-input';
-import DisplayCurrentWeather from "./display-current-weather";
-import DisplayForecast from './display-forecast';
+import LocationInput from './locationInput';
+import DisplayCurrentWeather from "./displayCurrentWeather";
+import DisplayForecast from './displayForecast';
 import NavigationBar from './navbar';
 import Header from './header';
 import {
@@ -13,7 +13,7 @@ import {
     Switch,
     NavLink,
 } from 'react-router-dom';
-import DisplayPollution from "./display-pollution";
+import DisplayPollution from "./displayPollution";
 
 class App extends React.Component {
     constructor(props){
@@ -49,11 +49,10 @@ class App extends React.Component {
                     throw new Error('Failed to get weather data - check city name for errors.')
                 }
             }).then( data => {
-                console.log(data);
                 this.setState({
                     weatherData: data
                 });
-            this.getSunriseSunset(this.state.weatherData.coord.lat, this.state.weatherData.coord.lon);
+            // this.getSunriseSunset(this.state.weatherData.coord.lat, this.state.weatherData.coord.lon);
             this.getForecastData();
             this.getAirlyData(this.state.weatherData.coord.lat, this.state.weatherData.coord.lon);
             // this.getOpenWeatherPollutionData(this.state.weatherData.coord.lat, this.state.weatherData.coord.lon);
@@ -72,7 +71,6 @@ class App extends React.Component {
                     throw new Error('Failed to get forecast data')
                 }
             }).then(data => {
-                console.log(data);
                 this.setState({
                     forecastData: data.list
                 })
@@ -102,7 +100,7 @@ class App extends React.Component {
                 weatherData: data,
                 locationName: data.name
             });
-            this.getSunriseSunset(latitude, longitude);
+            // this.getSunriseSunset(latitude, longitude);
             this.getForecastDataFromCoordinates(latitude, longitude);
             this.getAirlyData(latitude, longitude);
             // this.getOpenWeatherPollutionData(latitude, longitude);
@@ -111,23 +109,23 @@ class App extends React.Component {
         })
     };
 
-    getSunriseSunset = (latitude, longitude) => {
-        fetch(`https://api.sunrise-sunset.org/json?lat=${latitude}&lng=${longitude}&date=today`)
-            .then(response => {
-                if (response.ok) {
-                    return response.json()
-                } else {
-                    throw new Error('Failed to get sunrise/sunset data - check latitude and longitude.')
-                }
-            }).then(data => {
-            this.setState({
-                sunrise: data.results.sunrise,
-                sunset: data.results.sunset
-            })
-        }).catch(error => {
-            console.log(error);
-        })
-    };
+    // getSunriseSunset = (latitude, longitude) => {
+    //     fetch(`https://api.sunrise-sunset.org/json?lat=${latitude}&lng=${longitude}&date=today`)
+    //         .then(response => {
+    //             if (response.ok) {
+    //                 return response.json()
+    //             } else {
+    //                 throw new Error('Failed to get sunrise/sunset data - check latitude and longitude.')
+    //             }
+    //         }).then(data => {
+    //         this.setState({
+    //             sunrise: data.results.sunrise,
+    //             sunset: data.results.sunset
+    //         })
+    //     }).catch(error => {
+    //         console.log(error);
+    //     })
+    // };
 
     getForecastDataFromCoordinates = (latitude, longitude) => {
         fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${this.props.apiKey}`)
@@ -159,7 +157,6 @@ class App extends React.Component {
                     throw new Error('Failed to get Airly pollution data')
                 }
             }).then(data => {
-                console.log(data);
                 this.setState({
                     airlyData: data,
                     loading: false
