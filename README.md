@@ -3,15 +3,15 @@
 <img width='250' height='250' src='images/good_weather_logo.png'>
 
 # Project description
-Simple React app made as a final project during Coders Lab frontend bootcamp.
+Simple React app made as my final project during Coders Lab frontend bootcamp.
 Utilizes the functional programming principle, with all but one components being pure functions.
-Hold state in a single root component, with necessary data passed to child components as props.
+Holds state in a single root component, with necessary data passed to child components as props.
 
 Current functionality includes:
 <ul>
   <li>current weather, forecast and pollution data views for any given location found in OpenWeatherMap database</li>
   <li>geolocation through browser geolocation API</li>
-  <li>dynamic styling of pollution view</li>
+  <li>dynamic styling of the pollution view</li>
   <li>mobile orientated styling</li>
 </ul>
 
