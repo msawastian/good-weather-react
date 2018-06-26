@@ -22,3 +22,11 @@ Current functionality includes:
 
 # 3rd party assets
 Search and geolocation icons made by Google, downloaded from [FlatIcon](http://www.flaticon.com).
+
+# Screenshots
+
+<div style='display: flex'>
+  <img width='250' src='/../screenshots/screenshots/current_weather.png'>
+  <img width='250' src='/../screenshots/screenshots/forecast.png'>
+  <img width='250' src='/../screenshots/screenshots/pollution.png'>
+ </div>
