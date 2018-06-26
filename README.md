@@ -1,9 +1,24 @@
-# good-weather-react
+# GOOD Weather (React)
 
+<img width='250' height='250' src='images/good_weather_logo.png'>
 
+# Project description
+Simple React app made as a final project during Coders Lab frontend bootcamp.
+Utilizes the functional programming principle, with all but one components being pure functions.
+Hold state in a single root component, with necessary data passed to child components as props.
 
-Small weather website. Based on React. 
-Uses openweather API for current weather and forecast data. 
-Pollution data provided by Airly.
-Sunrise and sunset data provided by https://sunrise-sunset.org/api.
-Search and geolocation icons made by Google, downloaded from www.flaticon.com.
+Current functionality includes:
+<ul>
+  <li>current weather, forecast and pollution data views for any given location found in OpenWeatherMap database</li>
+  <li>geolocation through browser geolocation API</li>
+  <li>dynamic styling of pollution view</li>
+  <li>mobile orientated styling</li>
+</ul>
+
+# APIs utilized
+
+[OpenWeatherMap API](https://openweathermap.org/api) for weather data (current and forecast).
+[Airly API](https://airly.eu/pl/api/) for pollution data (CAQI, PM10, PM2.5).
+
+# 3rd party assets
+Search and geolocation icons made by Google, downloaded from [http://www.flaticon.com](FlatIcon).
