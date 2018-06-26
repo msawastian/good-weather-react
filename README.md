@@ -21,4 +21,4 @@ Current functionality includes:
 [Airly API](https://airly.eu/pl/api/) for pollution data (CAQI, PM10, PM2.5).
 
 # 3rd party assets
-Search and geolocation icons made by Google, downloaded from [http://www.flaticon.com](FlatIcon).
+Search and geolocation icons made by Google, downloaded from [FlatIcon](http://www.flaticon.com).
