@@ -16,6 +16,7 @@ import Footer from './footer';
 import DisplayCurrentWeather from "./displayCurrentWeather";
 import DisplayForecast from './displayForecast';
 import DisplayPollution from "./displayPollution";
+import DisplayWeatherContainer from "./displayWeatherContainer";
 
 class App extends React.Component {
     constructor(props){
@@ -26,6 +27,7 @@ class App extends React.Component {
             weatherData: {},
             forecastData: [],
             airlyData: {},
+            surroundingWeather: []
         }
     }
 
@@ -50,6 +52,7 @@ class App extends React.Component {
                 });
             this.getForecastData();
             this.getAirlyData(this.state.weatherData.coord.lat, this.state.weatherData.coord.lon);
+            this.getSurroundingWeatherData(this.state.weatherData.coord.lat, this.state.weatherData.coord.lon);
         }).catch(error => {
             console.log(error);
         })
@@ -95,6 +98,7 @@ class App extends React.Component {
             });
             this.getForecastDataFromCoordinates(latitude, longitude);
             this.getAirlyData(latitude, longitude);
+            this.getSurroundingWeatherData(latitude, longitude);
         }).catch(error => {
             console.log(error);
         })
@@ -112,6 +116,24 @@ class App extends React.Component {
                 this.setState({
                     forecastData: data.list
                 })
+        }).catch(error => {
+            console.log(error);
+        })
+    };
+
+    getSurroundingWeatherData = (latitude, longitude) => {
+        fetch(`http://api.openweathermap.org/data/2.5/find?lat=${latitude}&lon=${longitude}&units=metric&cnt=17&appid=${this.props.apiKey}`)
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                } else {
+                    throw new Error('Failed to get forecast data - check coordinates for errors.')
+                }
+            }).then(data => {
+            console.log(data);
+            this.setState({
+                surroundingWeather: data.list
+            })
         }).catch(error => {
             console.log(error);
         })
@@ -154,7 +176,7 @@ class App extends React.Component {
                     </div>
                     <Switch>
                         <Route exact path={'/'}
-                               render={(props) => this.state.loading ? <p className={'no-data'}>Awaiting input...</p> : <DisplayCurrentWeather {...props} weatherData={this.state.weatherData}/>}/>
+                               render={(props) => this.state.loading ? <p className={'no-data'}>Awaiting input...</p> : <DisplayWeatherContainer {...props} weatherData={this.state.weatherData} surroundingWeather={this.state.surroundingWeather}/>}/>
                         <Route path={'/longterm'}
                                render={(props) => this.state.loading ? <p className={'no-data'}>Awaiting input...</p> : <DisplayForecast {...props} forecast={this.state.forecastData} location={this.state.locationName}/>}/>
                         <Route path={'/pollution'}

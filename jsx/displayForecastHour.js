@@ -29,7 +29,6 @@ const DisplayForecastHour = ({clouds, dt, dt_txt, main, rain, weather, wind}) =>
                 </li>
             </ul>
         </li>
-
     )
 };
 
