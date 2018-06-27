@@ -144,12 +144,14 @@ class App extends React.Component {
             <HashRouter>
                 <main>
                     <Header/>
-                    <NavigationBar/>
-                    <LocationInput inputCallback={this.handleLocationInput}
-                                   buttonCallback={this.getCurrentWeatherDataFromLocation}
-                                   geoCallback={this.getGeoLocation}
-                                   locationName={this.state.locationName}
-                    />
+                    <div className={'headerNavigationContainer'}>
+                            <NavigationBar/>
+                            <LocationInput inputCallback={this.handleLocationInput}
+                                           buttonCallback={this.getCurrentWeatherDataFromLocation}
+                                           geoCallback={this.getGeoLocation}
+                                           locationName={this.state.locationName}
+                            />
+                    </div>
                     <Switch>
                         <Route exact path={'/'}
                                render={(props) => this.state.loading ? <p className={'no-data'}>Awaiting input...</p> : <DisplayCurrentWeather {...props} weatherData={this.state.weatherData}/>}/>
