@@ -2,7 +2,7 @@
 
 .pollution-container {
   height: 50vh;
-  width: 95vw;
+  width: 95%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,10 +14,7 @@
 .airly-logo {
   width: 100%;
   height: 25%;
-  //background-image: url("https://airly.eu/wp-content/themes/draftweb/images/presskit/big/logo1.jpg");
   background-image: url("./../images/airly.jpg");
-  //background-image: url("./../images/geo.svg");
-
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -71,10 +68,14 @@
   display: block;
   margin-left: 20%;
   margin-right: auto;
+  color: white;
+
 }
 
 .pollution-item-value-desc {
   display: block;
   margin-right: 20%;
   margin-left: auto;
+  color: white;
+
 }

@@ -15,11 +15,16 @@
   color: #444;
 }
 
+html {
+  background-color: #F5F5F5;
+}
 body {
   background-color: $mainBackgroundColor;
   position: relative;
   min-height: 100vh; //to push footer to the bottom of the page when there's no data to display
-  padding-bottom: 5vh; //equal to footer's height, so it doesn't cover other elements
+  padding-bottom: 6vh; //equal to footer's height, so it doesn't cover other elements
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 main {

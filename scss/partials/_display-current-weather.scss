@@ -4,7 +4,9 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 95vw;
+  align-content: center;
+  align-items: center;
+  width: 95%;
   height: 60vh;
   background-color: white;
 }
@@ -19,19 +21,15 @@
 
 .weather-row-left {
   width: 40%;
-  height: 100%;
-  margin: auto;
 }
 
 .weather-row-right {
   width: 60%;
-  height: 100%;
 }
 
 .weather-row-left-list, .weather-row-right-list {
   list-style: none;
   width: 100%;
-  height: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
