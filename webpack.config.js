@@ -4,7 +4,7 @@ module.exports = {
     entry: "./jsx/app.js",
     output: {
         filename: "./bundle.js",
-        path: path.resolve(__dirname, "js")
+        path: path.resolve(__dirname, "dist")
     },
     mode: "development",
     watch: true,
@@ -37,7 +37,7 @@ module.exports = {
                     loader: 'url-loader',
                     options: {
                         limit: 8000, // Convert images < 8kb to base64 strings
-                        name: 'images/[hash]-[name].[ext]'
+                        name: 'images/[name].[ext]'
                     }
                 }]
             }
