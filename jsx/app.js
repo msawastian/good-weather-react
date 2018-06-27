@@ -12,6 +12,7 @@ import '../scss/main.scss';
 import Header from './header';
 import NavigationBar from './navbar';
 import LocationInput from './locationInput';
+import Footer from './footer';
 import DisplayCurrentWeather from "./displayCurrentWeather";
 import DisplayForecast from './displayForecast';
 import DisplayPollution from "./displayPollution";
@@ -157,6 +158,7 @@ class App extends React.Component {
                         <Route path={'/pollution'}
                                render={(props) => this.state.loading ? <p className={'no-data'}>Awaiting input...</p> : <DisplayPollution {...props} airlyData={this.state.airlyData}/>}/>
                     </Switch>
+                    <Footer/>
                 </main>
             </HashRouter>
         )

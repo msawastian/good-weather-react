@@ -5,8 +5,7 @@
 @import 'partials/_header.scss';
 @import 'partials/_display-forecast.scss';
 @import 'partials/_display-pollution.scss';
-
-
+@import 'partials/_footer.scss';
 
 * {
   box-sizing: border-box;
@@ -17,6 +16,9 @@
 
 body {
   background-color: $mainBackgroundColor;
+  position: relative;
+  min-height: 100vh; //to push footer to the bottom of the page when there's no data to display
+  padding-bottom: 5vh; //equal to footer's height, so it doesn't cover other elements
 }
 
 main {
@@ -30,4 +32,3 @@ main {
   font-size: 20px;
   text-align: center;
 }
-
