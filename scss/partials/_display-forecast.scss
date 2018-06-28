@@ -2,14 +2,21 @@
   width: 95%;
   display: flex;
   justify-content: center;
+  @media (min-width: 1000px) {
+    width: 100%;
+  }
 }
 
 .forecast-list {
   width: 100%;
-  max-width: 1000px;
   display: flex;
   flex-direction: column;
   list-style: none;
+  @media (min-width: 1000px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 }
 
 .forecast-list-element {
@@ -22,6 +29,12 @@
   border-left: 2px solid $maincolor;
   border-right: 2px solid $maincolor;
   align-items: center;
+  @media (min-width: 1000px) {
+    height: 220px;
+    width: 200px;
+    margin: 10px 4px;
+    flex-direction: column;
+  }
 }
 
 .forecast-list-element-time {
@@ -35,11 +48,16 @@
   display: block;
   font-size: 1.2rem;
   text-align: center;
+
 }
 
 .forecast-element-time-date {
   display: block;
   font-size: 0.8rem;
+  @media (min-width: 1000px) {
+    font-size: 1rem;
+    margin: 5px 0;
+  }
 }
 
 .forecast-list-icon {
@@ -47,6 +65,10 @@
   width: 15vw;
   background-repeat: no-repeat;
   background-position: center;
+  @media (min-width: 1000px) {
+    width: 100px;
+    margin-top: 10px;
+  }
 }
 
 .forecast-main {
@@ -79,6 +101,9 @@
   flex-direction: column;
   justify-content: space-around;
   margin-right: 5px;
+  @media (min-width: 1000px) {
+    width: 80%;
+  }
 }
 
 .forecast-list-secondary-element {
@@ -87,4 +112,8 @@
   flex-direction: row;
   justify-content: space-between;
   font-size: 0.6rem;
+  @media (min-width: 1000px) {
+    margin: 5px 0;
+    font-size: 0.8rem;
+  }
 }
