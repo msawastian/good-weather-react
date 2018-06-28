@@ -6,7 +6,7 @@ const DisplayForecastHour = ({clouds, dt, dt_txt, main, rain, weather, wind}) =>
         return (
         <li className={'forecast-list-element animated fadeInUp'}>
             <div className={'forecast-list-element-time'}>
-                <span className={'forecast-element-time-hour'}>{dt_txt.slice(11, 16)}</span>
+                <span className={'forecast-element-time-hour'}>{dt_txt.slice(11, 16)}</span> //TODO: Add leading zero to first 9 days of the month
                 <span className={'forecast-element-time-date'}>{date}</span>
             </div>
             <div className={'forecast-list-icon'} style={{backgroundImage: `url(http://openweathermap.org/img/w/${weather[0].icon}.png)`}}></div>
@@ -29,7 +29,6 @@ const DisplayForecastHour = ({clouds, dt, dt_txt, main, rain, weather, wind}) =>
                 </li>
             </ul>
         </li>
-
     )
 };
 
