@@ -14,10 +14,13 @@ const DisplayCurrentWeather = props => {
         sunset = new Date(weather.sys.sunset * 1000).toLocaleTimeString();
 
     return (
-            <div className={'weather animated fadeInUp'}>
+        <div className={'weather animated fadeInUp'}>
+            <h2 className={'weather-header'}>{weather.name}</h2>
+            <div className={'weather-rows'}>
                 <div className={'weather-row-left'}>
                     <ul className={'weather-row-left-list'}>
-                        <li className={'weather-row-left-list-element weather-icon'} style={{backgroundImage: `url(http://openweathermap.org/img/w/${weather.weather[0].icon}.png)`}}></li>
+                        <li className={'weather-row-left-list-element weather-icon'}
+                            style={{backgroundImage: `url(http://openweathermap.org/img/w/${weather.weather[0].icon}.png)`}}></li>
                         <li className={'weather-row-left-list-element weather-temp'}>{weather.main.temp.toFixed(0)} &#8451;</li>
                         <li className={'weather-row-left-list-element weather-date'}>{date}</li>
                         <li className={'weather-row-left-list-element weather-time'}>{getTime()}</li>
@@ -65,6 +68,7 @@ const DisplayCurrentWeather = props => {
                     </ul>
                 </div>
             </div>
+        </div>
     )
 };
 

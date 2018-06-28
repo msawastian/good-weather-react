@@ -32,8 +32,14 @@
   border-right: 2px solid purple;
 }
 
+.surroundingWeather-name, .surroundingWeather-main {
+  text-align: center;
+}
+
 .surroundingWeather-list-icon {
   display: block;
   height: 40px;
   width: 40px;
+  background-position: center;
+  margin: 10px 0;
 }
