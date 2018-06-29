@@ -27,7 +27,8 @@ class App extends React.Component {
             weatherData: {},
             forecastData: [],
             airlyData: {},
-            surroundingWeather: []
+            surroundingWeather: [],
+            aqiData: {}
         }
     }
 
@@ -53,6 +54,7 @@ class App extends React.Component {
             this.getForecastData();
             this.getAirlyData(this.state.weatherData.coord.lat, this.state.weatherData.coord.lon);
             this.getSurroundingWeatherData(this.state.weatherData.coord.lat, this.state.weatherData.coord.lon);
+            this.getAQICNData(this.state.weatherData.coord.lat, this.state.weatherData.coord.lon);
         }).catch(error => {
             console.log(error);
         })
@@ -99,6 +101,7 @@ class App extends React.Component {
             this.getForecastDataFromCoordinates(latitude, longitude);
             this.getAirlyData(latitude, longitude);
             this.getSurroundingWeatherData(latitude, longitude);
+            this.getAQICNData(latitude, longitude);
         }).catch(error => {
             console.log(error);
         })
@@ -130,7 +133,6 @@ class App extends React.Component {
                     throw new Error('Failed to get forecast data - check coordinates for errors.')
                 }
             }).then(data => {
-            console.log(data);
             this.setState({
                 surroundingWeather: data.list
             })
@@ -153,11 +155,28 @@ class App extends React.Component {
                 }
             }).then(data => {
                 this.setState({
-                    airlyData: data,
-                    loading: false
+                    airlyData: data
                 })
         }).catch(error => {
             console.log(error)
+        })
+    };
+
+    getAQICNData = (latitude, longitude) => {
+        fetch(`http://api.waqi.info/feed/geo:${latitude};${longitude}/?token=${this.props.aqicnKey}`)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Failed to get AQICN data');
+                }
+            }).then(data => {
+                this.setState({
+                    aqiData: data.data,
+                    loading: false
+                })
+        }).catch(error => {
+            console.log(error);
         })
     };
 
@@ -180,7 +199,7 @@ class App extends React.Component {
                         <Route path={'/longterm'}
                                render={(props) => this.state.loading ? <p className={'no-data'}>Awaiting input...</p> : <DisplayForecast {...props} forecast={this.state.forecastData} location={this.state.locationName}/>}/>
                         <Route path={'/pollution'}
-                               render={(props) => this.state.loading ? <p className={'no-data'}>Awaiting input...</p> : <DisplayPollution {...props} airlyData={this.state.airlyData}/>}/>
+                               render={(props) => this.state.loading ? <p className={'no-data'}>Awaiting input...</p> : <DisplayPollution {...props} airlyData={this.state.airlyData} aqiData={this.state.aqiData}/>}/>
                     </Switch>
                     <Footer/>
                 </main>
@@ -191,7 +210,10 @@ class App extends React.Component {
 
 document.addEventListener('DOMContentLoaded', function() {
     ReactDOM.render(
-        <App apiKey={'1564f8b4dd2a1779efdc16350e54fe25'} airlyKey={'Z6ObIaiUCKIaZAYUbOXUvzzTjAi8Xl3j'}/>,
+        <App apiKey={'1564f8b4dd2a1779efdc16350e54fe25'}
+             airlyKey={'Z6ObIaiUCKIaZAYUbOXUvzzTjAi8Xl3j'}
+             aqicnKey={'eea290e2a3139bc62f0f2a8b6f39621b8394aa52'}
+        />,
         document.getElementById('app')
     )
 });
