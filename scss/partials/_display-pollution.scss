@@ -1,20 +1,42 @@
-
-
 .pollution-container {
-  height: 50vh;
   width: 95%;
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 1000px) {
+    flex-direction: row;
+    width: 100%;
+  }
+}
+
+.airly-container, .aqi-container {
+  height: 45vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: white;
   border-left: 2px solid $maincolor;
   border-right: 2px solid $maincolor;
+  margin-bottom: 20px;
+  @media (min-width: 1000px) {
+    width: 50%;
+    margin: 0 5px;
+  }
 }
 
 .airly-logo {
   width: 100%;
   height: 25%;
   background-image: url("./../images/airly.jpg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.aqi-logo {
+  background-image: url("./../images/aqicnxl.png");
+  width: 100%;
+  height: 25%;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
