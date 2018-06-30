@@ -87,7 +87,7 @@ const DisplayAirly = props => {
         )
     } else {
         return (
-            <div className={'pollution-container animated fadeInUp'}>
+            <div className={'airly-container'}>
                 <div className={'airly-logo'}></div>
                 <ul className={'pollution-list'}>
                     <li className={'pollution-list-element'} style={{backgroundColor: '#6c9ae2'}}>

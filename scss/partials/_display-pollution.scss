@@ -2,7 +2,10 @@
   width: 95%;
   display: flex;
   flex-direction: column;
-
+  @media (min-width: 1000px) {
+    flex-direction: row;
+    width: 100%;
+  }
 }
 
 .airly-container, .aqi-container {
@@ -15,6 +18,10 @@
   border-left: 2px solid $maincolor;
   border-right: 2px solid $maincolor;
   margin-bottom: 20px;
+  @media (min-width: 1000px) {
+    width: 50%;
+    margin: 0 5px;
+  }
 }
 
 .airly-logo {

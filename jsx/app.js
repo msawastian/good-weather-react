@@ -171,6 +171,7 @@ class App extends React.Component {
                     throw new Error('Failed to get AQICN data');
                 }
             }).then(data => {
+                console.log(data.data);
                 this.setState({
                     aqiData: data.data,
                     loading: false
