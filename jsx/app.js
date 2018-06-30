@@ -28,7 +28,8 @@ class App extends React.Component {
             forecastData: [],
             airlyData: {},
             surroundingWeather: [],
-            aqiData: {}
+            aqiData: {},
+            retryCounter: 0
         }
     }
 
@@ -171,11 +172,24 @@ class App extends React.Component {
                     throw new Error('Failed to get AQICN data');
                 }
             }).then(data => {
-                console.log(data.data);
-                this.setState({
-                    aqiData: data.data,
-                    loading: false
-                })
+                console.log(data);
+                if (this.state.retryCounter > 1) {
+                    this.setState({
+                        retryCounter: 0
+                    });
+                    throw new Error('Exceeded retry limit');
+                } else if (data.data) {
+                    this.setState({
+                        aqiData: data.data,
+                        loading: false,
+                        retryCounter: 0
+                    })
+                } else {
+                    this.setState({
+                        retryCounter: this.state.retryCounter +1
+                    });
+                    this.getAQICNData(latitude, longitude);
+                }
         }).catch(error => {
             console.log(error);
         })
