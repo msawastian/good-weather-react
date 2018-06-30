@@ -103,7 +103,7 @@ const DisplayAQI = props => {
                     <li className={'pollution-list-element'}>
                         <span className={'pollution-item'}>CO</span>
                         {props.aqiData.iaqi.co ?
-                            <span className={'pollution-item-value'} style={coColor(props.aqiData.iaqi.co.v * 100)}>{props.aqiData.iaqi.co.v * 100} &#181;m/m3</span>
+                            <span className={'pollution-item-value'} style={coColor(props.aqiData.iaqi.co.v * 100)}>{(props.aqiData.iaqi.co.v.toFixed(2) * 100).toFixed(0)} &#181;m/m3</span>
                             : <span className={'pollution-item-value'} style={{backgroundColor: '#6c9ae2'}}>NO DATA</span>}
                     </li>
                     <li className={'pollution-list-element'}>
