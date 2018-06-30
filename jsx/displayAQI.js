@@ -90,7 +90,7 @@ const DisplayAQI = props => {
 
     if (props.aqiData) {
         return (
-            <div className={'aqi-container animated fadeInUp'}>
+            <div className={'aqi-container'}>
                 <div className={'aqi-logo'}></div>
                 <ul className={'pollution-list'}>
                     <li className={'pollution-list-element'}>
