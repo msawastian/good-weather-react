@@ -1,13 +1,13 @@
 import React from 'react';
-import DisplayCurrentWeather from "./displayCurrentWeather";
-import DisplaySurroundingWeather from "./displaySurroundingWeather";
+import DisplayCurrentWeather from './displayCurrentWeather';
+import DisplayNightNextDay from './displayNightNextDay';
 
 
 const DisplayWeatherContainer = props => {
     return (
-        <div className={'weather-container'}>
+        <div className={'weather-container animated fadeInUp'}>
             <DisplayCurrentWeather weatherData={props.weatherData}/>
-            <DisplaySurroundingWeather surroundingWeather={props.surroundingWeather} getWeather={props.getWeather}/>
+            <DisplayNightNextDay forecastData={props.forecastData}/>
         </div>
         )
 };

@@ -14,7 +14,7 @@ const DisplayCurrentWeather = props => {
         sunset = new Date(weather.sys.sunset * 1000).toLocaleTimeString();
 
     return (
-        <div className={'weather animated fadeInUp'}>
+        <div className={'weather'}>
             <h2 className={'weather-header'}>{weather.name}</h2>
             <div className={'weather-rows'}>
                 <div className={'weather-row-left'}>
@@ -47,7 +47,7 @@ const DisplayCurrentWeather = props => {
                         </li>
                         <li className={'weather-row-right-list-element'}>
                             <span>Wind</span>
-                            <span>{weather.wind.speed} km/h</span>
+                            <span>{weather.wind.speed.toFixed(1)} km/h</span>
                         </li>
                         <li className={'weather-row-right-list-element'}>
                             <span>Wind direction</span>
