@@ -5,7 +5,7 @@ import DisplayNightNextDay from './displayNightNextDay';
 
 const DisplayWeatherContainer = props => {
     return (
-        <div className={'weather-container'}>
+        <div className={'weather-container animated fadeInUp'}>
             <DisplayCurrentWeather weatherData={props.weatherData}/>
             <DisplayNightNextDay forecastData={props.forecastData}/>
         </div>

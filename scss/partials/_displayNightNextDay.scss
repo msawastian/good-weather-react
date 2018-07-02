@@ -1,0 +1,65 @@
+.night-next-day {
+  display: none;
+  @media (min-width: 1000px) {
+    display: flex;
+    width: 52%;
+    height: 100%;
+
+  }
+}
+
+.night-next-day__night, .night-next-day__next-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-left: 2px solid purple;
+  border-right: 2px solid purple;
+}
+
+.night-next-day__night {
+  width: 50%;
+  height: 100%;
+  background-color: #1E4258;
+  color: white;
+  margin-right: 10px;
+}
+
+.night-next-day__next-day {
+  width: 50%;
+  height: 100%;
+  background-color: white;
+  margin-left: 10px;
+
+}
+
+.night-next-day-header {
+  font-size: 1.5rem;
+  margin-top: 50px;
+}
+
+.night__image, .next-day__image {
+  width: 80px;
+  height: 80px;
+  margin: 30px 0 15px 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.night-next-day__temp {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.night-next-day__list {
+  list-style: none;
+  width: 100%;
+}
+
+.night-next-day__list-element {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 15px 10px;
+}

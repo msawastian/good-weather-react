@@ -13,7 +13,6 @@
   padding: 0;
   margin: 0;
   font-family: 'Encode Sans Condensed', sans-serif;
-  color: #444;
 }
 
 html {
@@ -27,6 +26,8 @@ body {
   padding-bottom: 6vh; //equal to footer's height, so it doesn't cover other elements
   max-width: 1200px;
   margin: 0 auto;
+  color: #444;
+
 }
 
 main {
