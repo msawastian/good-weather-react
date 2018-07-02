@@ -7,6 +7,7 @@ const DisplayWeatherContainer = props => {
     return (
         <div className={'weather-container'}>
             <DisplayCurrentWeather weatherData={props.weatherData}/>
+            <DisplayNightNextDay forecastData={props.forecastData}/>
         </div>
         )
 };

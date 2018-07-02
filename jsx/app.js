@@ -190,7 +190,7 @@ class App extends React.Component {
                     </div>
                     <Switch>
                         <Route exact path={'/'}
-                               render={(props) => this.state.loading ? <p className={'no-data'}>Awaiting input...</p> : <DisplayWeatherContainer {...props} weatherData={this.state.weatherData}/>}/>
+                               render={(props) => this.state.loading ? <p className={'no-data'}>Awaiting input...</p> : <DisplayWeatherContainer {...props} weatherData={this.state.weatherData} forecastData={this.state.forecastData}/>}/>
                         <Route path={'/longterm'}
                                render={(props) => this.state.loading ? <p className={'no-data'}>Awaiting input...</p> : <DisplayForecast {...props} forecast={this.state.forecastData} location={this.state.locationName}/>}/>
                         <Route path={'/pollution'}
