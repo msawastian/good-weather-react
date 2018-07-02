@@ -47,7 +47,7 @@ const DisplayCurrentWeather = props => {
                         </li>
                         <li className={'weather-row-right-list-element'}>
                             <span>Wind</span>
-                            <span>{weather.wind.speed} km/h</span>
+                            <span>{weather.wind.speed.toFixed(1)} km/h</span>
                         </li>
                         <li className={'weather-row-right-list-element'}>
                             <span>Wind direction</span>

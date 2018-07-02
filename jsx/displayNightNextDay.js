@@ -31,7 +31,7 @@ const DisplayNightNextDay = props => {
                     </li>
                     <li className={'night-next-day__list-element'}>
                         <span>Wind</span>
-                        <span>{nightWeather.wind.speed} km/h</span>
+                        <span>{nightWeather.wind.speed.toFixed(1)} km/h</span>
                     </li>
                     <li className={'night-next-day__list-element'}>
                         <span>Wind direction</span>
@@ -43,7 +43,7 @@ const DisplayNightNextDay = props => {
                     </li>
                     <li className={'night-next-day__list-element'}>
                         <span>Pressure</span>
-                        <span>{nightWeather.main.pressure} hPa</span>
+                        <span>{nightWeather.main.pressure.toFixed(0)} hPa</span>
                     </li>
                 </ul>
             </div>
@@ -62,7 +62,7 @@ const DisplayNightNextDay = props => {
                     </li>
                     <li className={'night-next-day__list-element'}>
                         <span>Wind</span>
-                        <span>{nextDayWeather.wind.speed} km/h</span>
+                        <span>{nextDayWeather.wind.speed.toFixed(1)} km/h</span>
                     </li>
                     <li className={'night-next-day__list-element'}>
                         <span>Wind direction</span>
@@ -74,7 +74,7 @@ const DisplayNightNextDay = props => {
                     </li>
                     <li className={'night-next-day__list-element'}>
                         <span>Pressure</span>
-                        <span>{nextDayWeather.main.pressure} hPa</span>
+                        <span>{nextDayWeather.main.pressure.toFixed(0)} hPa</span>
                     </li>
                 </ul>
             </div>
