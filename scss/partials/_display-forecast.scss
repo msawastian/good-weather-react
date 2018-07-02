@@ -14,8 +14,7 @@
   list-style: none;
   @media (min-width: 1000px) {
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    overflow: scroll;
   }
 }
 
@@ -30,8 +29,8 @@
   border-right: 2px solid $maincolor;
   align-items: center;
   @media (min-width: 1000px) {
-    height: 220px;
-    width: 200px;
+    height: 70vh;
+    width: 140px;
     margin: 10px 4px;
     flex-direction: column;
   }
@@ -68,6 +67,7 @@
   @media (min-width: 1000px) {
     width: 100px;
     margin-top: 10px;
+    background-size: contain;
   }
 }
 

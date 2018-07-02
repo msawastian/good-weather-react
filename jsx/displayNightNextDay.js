@@ -38,7 +38,7 @@ const DisplayNightNextDay = props => {
                         <span>{calculateWindDirection(nightWeather.wind.deg)}</span>
                     </li>
                     <li className={'night-next-day__list-element'}>
-                        <span>Precipitation</span>
+                        <span>Rainfall</span>
                         <span>{nightWeather.precipitation ? nightWeather.precipitation.value : 'n/a'}</span>
                     </li>
                     <li className={'night-next-day__list-element'}>
@@ -69,7 +69,7 @@ const DisplayNightNextDay = props => {
                         <span>{calculateWindDirection(nextDayWeather.wind.deg)}</span>
                     </li>
                     <li className={'night-next-day__list-element'}>
-                        <span>Precipitation</span>
+                        <span>Rainfall</span>
                         <span>{nextDayWeather.precipitation ? nextDayWeather.precipitation.value : 'n/a'}</span>
                     </li>
                     <li className={'night-next-day__list-element'}>

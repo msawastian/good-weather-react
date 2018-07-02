@@ -1,7 +1,12 @@
 import React from 'react';
 
 const DisplayForecastHour = ({clouds, dt, dt_txt, main, rain, weather, wind}) => {
-        const date = new Date(dt * 1000).toLocaleDateString().slice(0,5);
+        let date = new Date(dt * 1000).toLocaleDateString().slice(0,5);
+
+        if (date[4] === '.') {
+            date = date.slice(0, 4);
+            date = ['0', [...date]];
+        }
 
         return (
         <li className={'forecast-list-element animated fadeInUp'}>
@@ -24,7 +29,7 @@ const DisplayForecastHour = ({clouds, dt, dt_txt, main, rain, weather, wind}) =>
                     <span>{clouds.all}%</span>
                 </li>
                 <li className={'forecast-list-secondary-element'}>
-                    <span>Precipitation</span>
+                    <span>Rainfall</span>
                     <span>{(rain && rain['3h']) ? `${rain['3h'].toFixed(2)} mm/m2` : 'n/a'}</span>
                 </li>
             </ul>
