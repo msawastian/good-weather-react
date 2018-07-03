@@ -58,7 +58,7 @@ const DisplayCurrentWeather = props => {
                             <span>{weather.visibility} m</span>
                         </li>
                         <li className={'weather-row-right-list-element'}>
-                            <span>Precipitation</span>
+                            <span>Rainfall</span>
                             <span>{weather.precipitation ? weather.precipitation.value : 'n/a'}</span>
                         </li>
                         <li className={'weather-row-right-list-element'}>
