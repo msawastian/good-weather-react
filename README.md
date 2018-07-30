@@ -2,6 +2,9 @@
 
 <img width='250' height='250' src='images/good_weather_logo.png'>
 
+# Live version
+Live version available [here](https://radiant-taiga-12880.herokuapp.com/#/).
+
 # Project description
 Simple React app made as my final project during Coders Lab frontend bootcamp.
 Utilizes the functional programming principle, with all but one components being pure functions.
