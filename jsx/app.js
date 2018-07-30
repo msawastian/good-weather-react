@@ -40,7 +40,7 @@ class App extends React.Component {
 
     getCurrentWeatherDataFromLocation = (event) => {
         event.preventDefault();
-        fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.state.locationName}&units=metric&appid=${this.props.apiKey}`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.state.locationName}&units=metric&appid=${this.props.apiKey}`)
             .then( response => {
                 if (response.ok) {
                     return response.json()
@@ -60,7 +60,7 @@ class App extends React.Component {
     };
 
     getForecastData = () => {
-        fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${this.state.locationName}&units=metric&appid=${this.props.apiKey}`)
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${this.state.locationName}&units=metric&appid=${this.props.apiKey}`)
             .then(response => {
                 if (response.ok) {
                     return response.json()
@@ -85,7 +85,7 @@ class App extends React.Component {
     };
 
     getCurrentWeatherDataFromCoordinates = (latitude, longitude) => {
-        fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${this.props.apiKey}`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${this.props.apiKey}`)
             .then( response => {
                 if (response.ok) {
                     return response.json()
@@ -106,7 +106,7 @@ class App extends React.Component {
     };
 
     getForecastDataFromCoordinates = (latitude, longitude) => {
-        fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${this.props.apiKey}`)
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${this.props.apiKey}`)
             .then(response => {
                 if (response.ok) {
                     return response.json()
@@ -144,7 +144,7 @@ class App extends React.Component {
     };
 
     getAQICNData = (latitude, longitude) => {
-        fetch(`http://api.waqi.info/feed/geo:${latitude};${longitude}/?token=${this.props.aqicnKey}`)
+        fetch(`https://api.waqi.info/feed/geo:${latitude};${longitude}/?token=${this.props.aqicnKey}`)
             .then(response => {
                 if (response.ok) {
                     return response.json();
