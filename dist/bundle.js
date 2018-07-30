@@ -212,7 +212,7 @@ var App = function (_React$Component) {
 
         _this.getCurrentWeatherDataFromLocation = function (event) {
             event.preventDefault();
-            fetch('http://api.openweathermap.org/data/2.5/weather?q=' + _this.state.locationName + '&units=metric&appid=' + _this.props.apiKey).then(function (response) {
+            fetch('https://api.openweathermap.org/data/2.5/weather?q=' + _this.state.locationName + '&units=metric&appid=' + _this.props.apiKey).then(function (response) {
                 if (response.ok) {
                     return response.json();
                 } else {
@@ -231,7 +231,7 @@ var App = function (_React$Component) {
         };
 
         _this.getForecastData = function () {
-            fetch('http://api.openweathermap.org/data/2.5/forecast?q=' + _this.state.locationName + '&units=metric&appid=' + _this.props.apiKey).then(function (response) {
+            fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + _this.state.locationName + '&units=metric&appid=' + _this.props.apiKey).then(function (response) {
                 if (response.ok) {
                     return response.json();
                 } else {
@@ -255,7 +255,7 @@ var App = function (_React$Component) {
         };
 
         _this.getCurrentWeatherDataFromCoordinates = function (latitude, longitude) {
-            fetch('http://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&units=metric&appid=' + _this.props.apiKey).then(function (response) {
+            fetch('https://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&units=metric&appid=' + _this.props.apiKey).then(function (response) {
                 if (response.ok) {
                     return response.json();
                 } else {
@@ -275,7 +275,7 @@ var App = function (_React$Component) {
         };
 
         _this.getForecastDataFromCoordinates = function (latitude, longitude) {
-            fetch('http://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon=' + longitude + '&units=metric&appid=' + _this.props.apiKey).then(function (response) {
+            fetch('https://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon=' + longitude + '&units=metric&appid=' + _this.props.apiKey).then(function (response) {
                 if (response.ok) {
                     return response.json();
                 } else {
@@ -310,7 +310,7 @@ var App = function (_React$Component) {
         };
 
         _this.getAQICNData = function (latitude, longitude) {
-            fetch('http://api.waqi.info/feed/geo:' + latitude + ';' + longitude + '/?token=' + _this.props.aqicnKey).then(function (response) {
+            fetch('https://api.waqi.info/feed/geo:' + latitude + ';' + longitude + '/?token=' + _this.props.aqicnKey).then(function (response) {
                 if (response.ok) {
                     return response.json();
                 } else {
@@ -1215,7 +1215,7 @@ var DisplayForecastHour = function DisplayForecastHour(_ref) {
                 date
             )
         ),
-        _react2.default.createElement('div', { className: 'forecast-list-icon', style: { backgroundImage: 'url(http://openweathermap.org/img/w/' + weather[0].icon + '.png)' } }),
+        _react2.default.createElement('div', { className: 'forecast-list-icon', style: { backgroundImage: 'url(https://openweathermap.org/img/w/' + weather[0].icon + '.png)' } }),
         _react2.default.createElement(
             'div',
             { className: 'forecast-main' },
