@@ -85,25 +85,43 @@ class App extends React.Component {
     };
 
     getCurrentWeatherDataFromCoordinates = (latitude, longitude) => {
-        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${this.props.apiKey}`)
-            .then( response => {
+        fetch(`/api/weather/coordinates?latitude=${latitude}&longitude=${longitude}`)
+            .then(response => {
                 if (response.ok) {
                     return response.json()
                 } else {
-                    throw new Error('Failed to get weather data - check coordinates for errors.')
+                    throw new Error('Failed to get response from server')
                 }
-            }).then( data => {
-            this.setState({
-                weatherData: data,
-                locationName: data.name
-            });
-            this.getForecastDataFromCoordinates(latitude, longitude);
-            this.getAirlyData(latitude, longitude);
-            this.getAQICNData(latitude, longitude);
-        }).catch(error => {
-            console.log(error);
-        })
+            })
+            .then(data => {
+                console.log(data);
+                // this.setState({
+                //     weatherData: data.data,
+                //     locationName: data.data.name
+                // });
+        }).catch(error => console.log(error))
     };
+
+    // getCurrentWeatherDataFromCoordinates = (latitude, longitude) => {
+    //     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${this.props.apiKey}`)
+    //         .then( response => {
+    //             if (response.ok) {
+    //                 return response.json()
+    //             } else {
+    //                 throw new Error('Failed to get weather data - check coordinates for errors.')
+    //             }
+    //         }).then( data => {
+    //         this.setState({
+    //             weatherData: data,
+    //             locationName: data.name
+    //         });
+    //         this.getForecastDataFromCoordinates(latitude, longitude);
+    //         this.getAirlyData(latitude, longitude);
+    //         this.getAQICNData(latitude, longitude);
+    //     }).catch(error => {
+    //         console.log(error);
+    //     })
+    // };
 
     getForecastDataFromCoordinates = (latitude, longitude) => {
         fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${this.props.apiKey}`)

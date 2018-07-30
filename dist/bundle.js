@@ -255,22 +255,20 @@ var App = function (_React$Component) {
         };
 
         _this.getCurrentWeatherDataFromCoordinates = function (latitude, longitude) {
-            fetch('https://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&units=metric&appid=' + _this.props.apiKey).then(function (response) {
+            fetch('/api/weather/coordinates?latitude=' + latitude + '&longitude=' + longitude).then(function (response) {
                 if (response.ok) {
                     return response.json();
                 } else {
-                    throw new Error('Failed to get weather data - check coordinates for errors.');
+                    throw new Error('Failed to get response from server');
                 }
             }).then(function (data) {
-                _this.setState({
-                    weatherData: data,
-                    locationName: data.name
-                });
-                _this.getForecastDataFromCoordinates(latitude, longitude);
-                _this.getAirlyData(latitude, longitude);
-                _this.getAQICNData(latitude, longitude);
+                console.log(data);
+                // this.setState({
+                //     weatherData: data.data,
+                //     locationName: data.data.name
+                // });
             }).catch(function (error) {
-                console.log(error);
+                return console.log(error);
             });
         };
 
@@ -352,6 +350,27 @@ var App = function (_React$Component) {
         };
         return _this;
     }
+
+    // getCurrentWeatherDataFromCoordinates = (latitude, longitude) => {
+    //     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${this.props.apiKey}`)
+    //         .then( response => {
+    //             if (response.ok) {
+    //                 return response.json()
+    //             } else {
+    //                 throw new Error('Failed to get weather data - check coordinates for errors.')
+    //             }
+    //         }).then( data => {
+    //         this.setState({
+    //             weatherData: data,
+    //             locationName: data.name
+    //         });
+    //         this.getForecastDataFromCoordinates(latitude, longitude);
+    //         this.getAirlyData(latitude, longitude);
+    //         this.getAQICNData(latitude, longitude);
+    //     }).catch(error => {
+    //         console.log(error);
+    //     })
+    // };
 
     _createClass(App, [{
         key: 'render',
