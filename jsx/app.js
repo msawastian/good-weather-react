@@ -38,50 +38,38 @@ class App extends React.Component {
         });
     };
 
-    getCurrentWeatherDataFromLocation = (event) => {
-        event.preventDefault();
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.state.locationName}&units=metric&appid=${this.props.apiKey}`)
-            .then( response => {
-                if (response.ok) {
-                    return response.json()
-                } else {
-                    throw new Error('Failed to get weather data - check city name for errors.')
-                }
-            }).then( data => {
-                this.setState({
-                    weatherData: data
-                });
-            this.getForecastData();
-            this.getAirlyData(this.state.weatherData.coord.lat, this.state.weatherData.coord.lon);
-            this.getAQICNData(this.state.weatherData.coord.lat, this.state.weatherData.coord.lon);
-        }).catch(error => {
-            console.log(error);
-        })
-    };
-
-    getForecastData = () => {
-        fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${this.state.locationName}&units=metric&appid=${this.props.apiKey}`)
-            .then(response => {
-                if (response.ok) {
-                    return response.json()
-                } else {
-                    throw new Error('Failed to get forecast data')
-                }
-            }).then(data => {
-                this.setState({
-                    forecastData: data.list
-                })
-        }).catch(error => {
-            console.log(error);
-        })
-    };
-
     getGeoLocation = () => {
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 this.getCurrentWeatherDataFromCoordinates(Number(position.coords.latitude), Number(position.coords.longitude));
             }, (error) => {console.log(error)}
         )
+    };
+
+    getCurrentWeatherDataFromLocation = (event) => {
+        event.preventDefault();
+
+        fetch(`/api/weather/location?locationname=${this.state.locationName}`)
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                } else {
+                    throw new Error('Failed to get response from server')
+                }
+            })
+            .then(data => {
+                console.log(data);
+                this.setState({
+                    weatherData: data.weatherData,
+                    locationName: data.weatherData.name,
+                    forecastData: data.forecastData.list,
+                    airlyData: data.airlyData,
+                    aqiData: data.aqiData,
+                    loading: false
+                });
+            }).catch(error => {
+            console.log(error);
+        })
     };
 
     getCurrentWeatherDataFromCoordinates = (latitude, longitude) => {
@@ -103,8 +91,50 @@ class App extends React.Component {
                     aqiData: data.aqiData,
                     loading: false
                 });
-        }).catch(error => console.log(error))
+            }).catch(error => console.log(error))
     };
+
+    // getCurrentWeatherDataFromLocation = (event) => {
+    //     event.preventDefault();
+    //     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.state.locationName}&units=metric&appid=${this.props.apiKey}`)
+    //         .then( response => {
+    //             if (response.ok) {
+    //                 return response.json()
+    //             } else {
+    //                 throw new Error('Failed to get weather data - check city name for errors.')
+    //             }
+    //         }).then( data => {
+    //             this.setState({
+    //                 weatherData: data
+    //             });
+    //         this.getForecastData();
+    //         this.getAirlyData(this.state.weatherData.coord.lat, this.state.weatherData.coord.lon);
+    //         this.getAQICNData(this.state.weatherData.coord.lat, this.state.weatherData.coord.lon);
+    //     }).catch(error => {
+    //         console.log(error);
+    //     })
+    // };
+
+    // getForecastData = () => {
+    //     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${this.state.locationName}&units=metric&appid=${this.props.apiKey}`)
+    //         .then(response => {
+    //             if (response.ok) {
+    //                 return response.json()
+    //             } else {
+    //                 throw new Error('Failed to get forecast data')
+    //             }
+    //         }).then(data => {
+    //             this.setState({
+    //                 forecastData: data.list
+    //             })
+    //     }).catch(error => {
+    //         console.log(error);
+    //     })
+    // };
+
+
+
+
 
     // getCurrentWeatherDataFromCoordinates = (latitude, longitude) => {
     //     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${this.props.apiKey}`)
@@ -144,58 +174,58 @@ class App extends React.Component {
     //     })
     // };
 
-    getAirlyData = (latitude, longitude) => {
-        fetch(`https://airapi.airly.eu/v1/nearestSensor/measurements?latitude=${latitude}&longitude=${longitude}`,
-            {method: 'GET', headers: {
-                Accept: 'application/json',
-                apikey: this.props.airlyKey
-                }})
-            .then(response => {
-                if (response.ok) {
-                    return response.json()
-                } else {
-                    throw new Error('Failed to get Airly pollution data')
-                }
-            }).then(data => {
-                this.setState({
-                    airlyData: data
-                })
-        }).catch(error => {
-            console.log(error)
-        })
-    };
+    // getAirlyData = (latitude, longitude) => {
+    //     fetch(`https://airapi.airly.eu/v1/nearestSensor/measurements?latitude=${latitude}&longitude=${longitude}`,
+    //         {method: 'GET', headers: {
+    //             Accept: 'application/json',
+    //             apikey: this.props.airlyKey
+    //             }})
+    //         .then(response => {
+    //             if (response.ok) {
+    //                 return response.json()
+    //             } else {
+    //                 throw new Error('Failed to get Airly pollution data')
+    //             }
+    //         }).then(data => {
+    //             this.setState({
+    //                 airlyData: data
+    //             })
+    //     }).catch(error => {
+    //         console.log(error)
+    //     })
+    // };
 
-    getAQICNData = (latitude, longitude) => {
-        fetch(`https://api.waqi.info/feed/geo:${latitude};${longitude}/?token=${this.props.aqicnKey}`)
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Failed to get AQICN data');
-                }
-            }).then(data => {
-                console.log(data);
-                if (this.state.retryCounter > 1) {
-                    this.setState({
-                        retryCounter: 0
-                    });
-                    throw new Error('Exceeded retry limit');
-                } else if (data.data) {
-                    this.setState({
-                        aqiData: data.data,
-                        loading: false,
-                        retryCounter: 0
-                    })
-                } else {
-                    this.setState({
-                        retryCounter: this.state.retryCounter +1
-                    });
-                    this.getAQICNData(latitude, longitude);
-                }
-        }).catch(error => {
-            console.log(error);
-        })
-    };
+    // getAQICNData = (latitude, longitude) => {
+    //     fetch(`https://api.waqi.info/feed/geo:${latitude};${longitude}/?token=${this.props.aqicnKey}`)
+    //         .then(response => {
+    //             if (response.ok) {
+    //                 return response.json();
+    //             } else {
+    //                 throw new Error('Failed to get AQICN data');
+    //             }
+    //         }).then(data => {
+    //             console.log(data);
+    //             if (this.state.retryCounter > 1) {
+    //                 this.setState({
+    //                     retryCounter: 0
+    //                 });
+    //                 throw new Error('Exceeded retry limit');
+    //             } else if (data.data) {
+    //                 this.setState({
+    //                     aqiData: data.data,
+    //                     loading: false,
+    //                     retryCounter: 0
+    //                 })
+    //             } else {
+    //                 this.setState({
+    //                     retryCounter: this.state.retryCounter +1
+    //                 });
+    //                 this.getAQICNData(latitude, longitude);
+    //             }
+    //     }).catch(error => {
+    //         console.log(error);
+    //     })
+    // };
 
     render() {
         return (
@@ -227,10 +257,7 @@ class App extends React.Component {
 
 document.addEventListener('DOMContentLoaded', function() {
     ReactDOM.render(
-        <App apiKey={'1564f8b4dd2a1779efdc16350e54fe25'}
-             airlyKey={'Z6ObIaiUCKIaZAYUbOXUvzzTjAi8Xl3j'}
-             aqicnKey={'eea290e2a3139bc62f0f2a8b6f39621b8394aa52'}
-        />,
+        <App/>,
         document.getElementById('app')
     )
 });
