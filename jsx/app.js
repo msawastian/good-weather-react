@@ -95,10 +95,14 @@ class App extends React.Component {
             })
             .then(data => {
                 console.log(data);
-                // this.setState({
-                //     weatherData: data.data,
-                //     locationName: data.data.name
-                // });
+                this.setState({
+                    weatherData: data.weatherData,
+                    locationName: data.weatherData.name,
+                    forecastData: data.forecastData.list,
+                    airlyData: data.airlyData,
+                    aqiData: data.aqiData,
+                    loading: false
+                });
         }).catch(error => console.log(error))
     };
 
@@ -123,22 +127,22 @@ class App extends React.Component {
     //     })
     // };
 
-    getForecastDataFromCoordinates = (latitude, longitude) => {
-        fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${this.props.apiKey}`)
-            .then(response => {
-                if (response.ok) {
-                    return response.json()
-                } else {
-                    throw new Error('Failed to get forecast data - check coordinates for errors.')
-                }
-            }).then(data => {
-                this.setState({
-                    forecastData: data.list
-                })
-        }).catch(error => {
-            console.log(error);
-        })
-    };
+    // getForecastDataFromCoordinates = (latitude, longitude) => {
+    //     fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${this.props.apiKey}`)
+    //         .then(response => {
+    //             if (response.ok) {
+    //                 return response.json()
+    //             } else {
+    //                 throw new Error('Failed to get forecast data - check coordinates for errors.')
+    //             }
+    //         }).then(data => {
+    //             this.setState({
+    //                 forecastData: data.list
+    //             })
+    //     }).catch(error => {
+    //         console.log(error);
+    //     })
+    // };
 
     getAirlyData = (latitude, longitude) => {
         fetch(`https://airapi.airly.eu/v1/nearestSensor/measurements?latitude=${latitude}&longitude=${longitude}`,

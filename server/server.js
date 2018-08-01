@@ -34,8 +34,6 @@ app.get('/api/weather/coordinates', (request, response) => {
                         apikey: 'Z6ObIaiUCKIaZAYUbOXUvzzTjAi8Xl3j'
                     }
                 })
-
-
             })
             .then(data => {
                 allData = {
@@ -43,14 +41,17 @@ app.get('/api/weather/coordinates', (request, response) => {
                     airlyData: data.data
                 };
 
+                return axios.get(`https://api.waqi.info/feed/geo:${latitude};${longitude}/?token=eea290e2a3139bc62f0f2a8b6f39621b8394aa52`)
+            })
+            .then(data => {
+                allData = {
+                    ...allData,
+                    aqiData: data.data.data
+                };
 
-
-
+                response.send(allData)
             })
             .catch(error => response.send(error))
-
-    // response.send(allData)
-
 });
 
 
