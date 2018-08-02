@@ -23,4 +23,4 @@ const getDataFromCoordinates = (latitude, longitude, dataObject) => {
     }))
 };
 
-module.exports = {getDataFromCoordinates}
+module.exports = {getDataFromCoordinates};

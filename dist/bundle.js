@@ -232,7 +232,7 @@ var App = function (_React$Component) {
                 _this.setState({
                     weatherData: data.weatherData,
                     locationName: data.weatherData.name,
-                    forecastData: data.forecastData.list,
+                    forecastData: data.forecastData,
                     airlyData: data.airlyData,
                     aqiData: data.aqiData,
                     loading: false
