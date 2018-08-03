@@ -29,7 +29,6 @@ app.get('/api/weather/coordinates', (request, response) => {
                 description: 'Failed to get data'
             })
         })
-
 });
 
 app.get('/api/weather/location', (request, response) => {
@@ -50,10 +49,6 @@ app.get('/api/weather/location', (request, response) => {
                 description: 'Failed to get data'
             })
         })
-
-
-
 });
-
 
 app.listen(port);

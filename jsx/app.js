@@ -28,7 +28,6 @@ class App extends React.Component {
             airlyData: {},
             surroundingWeather: [],
             aqiData: {},
-            retryCounter: 0
         }
     }
 
@@ -58,7 +57,6 @@ class App extends React.Component {
                 }
             })
             .then(data => {
-                console.log(data);
                 this.setState({
                     weatherData: data.weatherData,
                     locationName: data.weatherData.name,
@@ -92,38 +90,6 @@ class App extends React.Component {
                     loading: false
                 });
             }).catch(error => console.log(error))
-    };
-
-    getAQICNData = (latitude, longitude) => {
-        fetch(`https://api.waqi.info/feed/geo:${latitude};${longitude}/?token=${this.props.aqicnKey}`)
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Failed to get AQICN data');
-                }
-            }).then(data => {
-                console.log(data);
-                if (this.state.retryCounter > 1) {
-                    this.setState({
-                        retryCounter: 0
-                    });
-                    throw new Error('Exceeded retry limit');
-                } else if (data.data) {
-                    this.setState({
-                        aqiData: data.data,
-                        loading: false,
-                        retryCounter: 0
-                    })
-                } else {
-                    this.setState({
-                        retryCounter: this.state.retryCounter +1
-                    });
-                    this.getAQICNData(latitude, longitude);
-                }
-        }).catch(error => {
-            console.log(error);
-        })
     };
 
     render() {
