@@ -12,7 +12,7 @@ const getAQIData = (latitude, longitude, dataObj, retryCount) => {
     }
 
     return new Promise((resolve, reject) => {
-       fetch(`https://api.waqi.info/feed/geo:${latitude};${longitude}/?token=eea290e2a3139bc62f0f2a8b6f39621b8394aa52`)
+       fetch(`https://api.waqi.info/feed/geo:${latitude};${longitude}/?token=${process.env.aqiAPIKey}`)
             .then(response => {
                 if (response.ok) {
                     return response.json()
