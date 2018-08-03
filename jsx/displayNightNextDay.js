@@ -9,7 +9,7 @@ const DisplayNightNextDay = props => {
 
     const nextDayWeather = props.forecastData.filter((forecast, index) => {
 
-        if (index > 3) {
+        if (index > 3) { //prevents showing same day weather as next day weather for hours after 06:00
             return forecast.dt_txt.slice(11,16) === '15:00'
         }
 

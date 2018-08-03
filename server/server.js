@@ -1,7 +1,6 @@
 require('./config/config.js');
 
 const express = require('express');
-const fetch = require('node-fetch');
 
 const {getDataFromCoordinates} = require('./functions/getDataFromCoordinates');
 const {getDataFromLocationName} = require('./functions/getDataFromLocationName');

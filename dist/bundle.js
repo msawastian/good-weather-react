@@ -1242,6 +1242,7 @@ var DisplayNightNextDay = function DisplayNightNextDay(props) {
     var nextDayWeather = props.forecastData.filter(function (forecast, index) {
 
         if (index > 3) {
+            //prevents showing same day weather as next day weather for hours after 06:00
             return forecast.dt_txt.slice(11, 16) === '15:00';
         }
     })[0];

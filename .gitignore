@@ -1,0 +1,4 @@
+./idea
+node_modules/
+dist/bundje.js.map
+server/config/config.json
