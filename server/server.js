@@ -1,7 +1,6 @@
 require('./config/config.js');
 
 const express = require('express');
-const fetch = require('node-fetch');
 
 const {getDataFromCoordinates} = require('./functions/getDataFromCoordinates');
 const {getDataFromLocationName} = require('./functions/getDataFromLocationName');
@@ -29,7 +28,6 @@ app.get('/api/weather/coordinates', (request, response) => {
                 description: 'Failed to get data'
             })
         })
-
 });
 
 app.get('/api/weather/location', (request, response) => {
@@ -50,10 +48,6 @@ app.get('/api/weather/location', (request, response) => {
                 description: 'Failed to get data'
             })
         })
-
-
-
 });
-
 
 app.listen(port);

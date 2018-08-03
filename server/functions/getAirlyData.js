@@ -8,7 +8,7 @@ const getAirlyData = (latitude, longitude, dataObj) => {
         fetch(`https://airapi.airly.eu/v1/nearestSensor/measurements?latitude=${latitude}&longitude=${longitude}`,
             {method: 'GET', headers: {
                     "Accept": "application/json",
-                    "apikey": "Z6ObIaiUCKIaZAYUbOXUvzzTjAi8Xl3j"
+                    "apikey": process.env.airlyAPIKey
                 }})
             .then(response => {
                 if (response.ok) {

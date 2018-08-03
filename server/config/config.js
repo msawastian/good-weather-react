@@ -8,7 +8,17 @@ if (env === 'development' || env === 'test') {
 
     Object.keys(envConfig).forEach(key => {
         process.env[key] = envConfig[key];
-    })
+    });
+
+}
+
+if (env === 'production') {
+    const config = require('./config.json');
+    console.log(config.test)
+
+    process.env.openWeatherAPIKey = config.production['openWeatherAPIKey'];
+    process.env.airlyAPIKey = config.production['airlyAPIKey'];
+    process.env.aqiAPIKey = config.production['aqiAPIKey'];
 }
 
 console.log('env *****', env);

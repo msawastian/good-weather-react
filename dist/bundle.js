@@ -228,7 +228,6 @@ var App = function (_React$Component) {
                     throw new Error('Failed to get response from server');
                 }
             }).then(function (data) {
-                console.log(data);
                 _this.setState({
                     weatherData: data.weatherData,
                     locationName: data.weatherData.name,
@@ -264,37 +263,6 @@ var App = function (_React$Component) {
             });
         };
 
-        _this.getAQICNData = function (latitude, longitude) {
-            fetch('https://api.waqi.info/feed/geo:' + latitude + ';' + longitude + '/?token=' + _this.props.aqicnKey).then(function (response) {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Failed to get AQICN data');
-                }
-            }).then(function (data) {
-                console.log(data);
-                if (_this.state.retryCounter > 1) {
-                    _this.setState({
-                        retryCounter: 0
-                    });
-                    throw new Error('Exceeded retry limit');
-                } else if (data.data) {
-                    _this.setState({
-                        aqiData: data.data,
-                        loading: false,
-                        retryCounter: 0
-                    });
-                } else {
-                    _this.setState({
-                        retryCounter: _this.state.retryCounter + 1
-                    });
-                    _this.getAQICNData(latitude, longitude);
-                }
-            }).catch(function (error) {
-                console.log(error);
-            });
-        };
-
         _this.state = {
             locationName: '',
             loading: true,
@@ -302,8 +270,7 @@ var App = function (_React$Component) {
             forecastData: [],
             airlyData: {},
             surroundingWeather: [],
-            aqiData: {},
-            retryCounter: 0
+            aqiData: {}
         };
         return _this;
     }
@@ -1272,12 +1239,13 @@ var DisplayNightNextDay = function DisplayNightNextDay(props) {
         return forecast.dt_txt.slice(11, 16) === '03:00';
     })[0];
 
-    var nextDayWeather = props.forecastData.filter(function (forecast) {
-        return forecast.dt_txt.slice(11, 16) === '15:00';
-    })[0];
+    var nextDayWeather = props.forecastData.filter(function (forecast, index) {
 
-    console.log(nightWeather);
-    console.log(nextDayWeather);
+        if (index > 3) {
+            //prevents showing same day weather as next day weather for hours after 06:00
+            return forecast.dt_txt.slice(11, 16) === '15:00';
+        }
+    })[0];
 
     return _react2.default.createElement(
         'div',
