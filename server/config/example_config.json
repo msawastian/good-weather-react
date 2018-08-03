@@ -1,0 +1,19 @@
+{
+  "test": {
+    "port": 3000,
+    "openWeatherAPIKey": "aaa",
+    "airlyAPIKey": "bbb",
+    "aqiAPIKey": "ccc"
+  },
+  "development": {
+    "port": 3000,
+    "openWeatherAPIKey": "aaa",
+    "airlyAPIKey": "bbb",
+    "aqiAPIKey": "ccc"
+  },
+  "production": {
+    "openWeatherAPIKey": "aaa",
+    "airlyAPIKey": "bbb",
+    "aqiAPIKey": "ccc"
+  }
+}
