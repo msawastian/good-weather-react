@@ -13,7 +13,7 @@ Front-end part utilizes the functional programming principle, with all but one c
 It holds state in a single root component, with necessary data passed to child components as props. 
 
 All weather data is fetched from various API by the server, then forwarded to the client-side website.
-Server uses Express to serve static files and respond to fetch requests from the client app.
+Server uses Express to serve static files and to respond to fetch requests from the client app.
 
 Current functionality includes:
 <ul>
