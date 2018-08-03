@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {
-    HashRouter,
+    BrowserRouter,
     Route,
     Switch,
     NavLink,
@@ -94,7 +94,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <HashRouter>
+            <BrowserRouter>
                 <main>
                     <Header/>
                     <div className={'headerNavigationContainer'}>
@@ -115,7 +115,7 @@ class App extends React.Component {
                     </Switch>
                     <Footer/>
                 </main>
-            </HashRouter>
+            </BrowserRouter>
         )
     }
 }
