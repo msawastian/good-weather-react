@@ -14,7 +14,6 @@ if (env === 'development' || env === 'test') {
 
 if (env === 'production') {
     const config = require('./config.json');
-    console.log(config.test)
 
     process.env.openWeatherAPIKey = config.production['openWeatherAPIKey'];
     process.env.airlyAPIKey = config.production['airlyAPIKey'];
