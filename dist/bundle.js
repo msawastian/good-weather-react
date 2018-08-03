@@ -210,42 +210,6 @@ var App = function (_React$Component) {
             });
         };
 
-        _this.getCurrentWeatherDataFromLocation = function (event) {
-            event.preventDefault();
-            fetch('https://api.openweathermap.org/data/2.5/weather?q=' + _this.state.locationName + '&units=metric&appid=' + _this.props.apiKey).then(function (response) {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Failed to get weather data - check city name for errors.');
-                }
-            }).then(function (data) {
-                _this.setState({
-                    weatherData: data
-                });
-                _this.getForecastData();
-                _this.getAirlyData(_this.state.weatherData.coord.lat, _this.state.weatherData.coord.lon);
-                _this.getAQICNData(_this.state.weatherData.coord.lat, _this.state.weatherData.coord.lon);
-            }).catch(function (error) {
-                console.log(error);
-            });
-        };
-
-        _this.getForecastData = function () {
-            fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + _this.state.locationName + '&units=metric&appid=' + _this.props.apiKey).then(function (response) {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Failed to get forecast data');
-                }
-            }).then(function (data) {
-                _this.setState({
-                    forecastData: data.list
-                });
-            }).catch(function (error) {
-                console.log(error);
-            });
-        };
-
         _this.getGeoLocation = function () {
             navigator.geolocation.getCurrentPosition(function (position) {
                 _this.getCurrentWeatherDataFromCoordinates(Number(position.coords.latitude), Number(position.coords.longitude));
@@ -254,58 +218,49 @@ var App = function (_React$Component) {
             });
         };
 
+        _this.getCurrentWeatherDataFromLocation = function (event) {
+            event.preventDefault();
+
+            fetch('/api/weather/location?locationname=' + _this.state.locationName).then(function (response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Failed to get response from server');
+                }
+            }).then(function (data) {
+                console.log(data);
+                _this.setState({
+                    weatherData: data.weatherData,
+                    locationName: data.weatherData.name,
+                    forecastData: data.forecastData,
+                    airlyData: data.airlyData,
+                    aqiData: data.aqiData,
+                    loading: false
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        };
+
         _this.getCurrentWeatherDataFromCoordinates = function (latitude, longitude) {
-            fetch('https://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&units=metric&appid=' + _this.props.apiKey).then(function (response) {
+            fetch('/api/weather/coordinates?latitude=' + latitude + '&longitude=' + longitude).then(function (response) {
                 if (response.ok) {
                     return response.json();
                 } else {
-                    throw new Error('Failed to get weather data - check coordinates for errors.');
+                    throw new Error('Failed to get response from server');
                 }
             }).then(function (data) {
+                console.log(data);
                 _this.setState({
-                    weatherData: data,
-                    locationName: data.name
-                });
-                _this.getForecastDataFromCoordinates(latitude, longitude);
-                _this.getAirlyData(latitude, longitude);
-                _this.getAQICNData(latitude, longitude);
-            }).catch(function (error) {
-                console.log(error);
-            });
-        };
-
-        _this.getForecastDataFromCoordinates = function (latitude, longitude) {
-            fetch('https://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon=' + longitude + '&units=metric&appid=' + _this.props.apiKey).then(function (response) {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Failed to get forecast data - check coordinates for errors.');
-                }
-            }).then(function (data) {
-                _this.setState({
-                    forecastData: data.list
+                    weatherData: data.weatherData,
+                    locationName: data.weatherData.name,
+                    forecastData: data.forecastData,
+                    airlyData: data.airlyData,
+                    aqiData: data.aqiData,
+                    loading: false
                 });
             }).catch(function (error) {
-                console.log(error);
-            });
-        };
-
-        _this.getAirlyData = function (latitude, longitude) {
-            fetch('https://airapi.airly.eu/v1/nearestSensor/measurements?latitude=' + latitude + '&longitude=' + longitude, { method: 'GET', headers: {
-                    Accept: 'application/json',
-                    apikey: _this.props.airlyKey
-                } }).then(function (response) {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Failed to get Airly pollution data');
-                }
-            }).then(function (data) {
-                _this.setState({
-                    airlyData: data
-                });
-            }).catch(function (error) {
-                console.log(error);
+                return console.log(error);
             });
         };
 
@@ -413,10 +368,7 @@ var App = function (_React$Component) {
 }(_react2.default.Component);
 
 document.addEventListener('DOMContentLoaded', function () {
-    _reactDom2.default.render(_react2.default.createElement(App, { apiKey: '1564f8b4dd2a1779efdc16350e54fe25',
-        airlyKey: 'Z6ObIaiUCKIaZAYUbOXUvzzTjAi8Xl3j',
-        aqicnKey: 'eea290e2a3139bc62f0f2a8b6f39621b8394aa52'
-    }), document.getElementById('app'));
+    _reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('app'));
 });
 
 /***/ }),
